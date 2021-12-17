@@ -16,10 +16,9 @@ class FirstScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-
+        setContentView(binding.root)
         lifecycleScope.launchWhenStarted {
-            setContentView(binding.root)
-            delay(1000)
+            delay(2000)
             val intent = Intent(this@FirstScreenActivity, HomeActivity::class.java)
             startActivity(intent)
         }

@@ -1,12 +1,9 @@
 package com.bajp.submissionone.home
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.app.AppCompatActivity
 import com.bajp.submissionone.databinding.ActivityHomeBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,14 +17,28 @@ class HomeActivity : AppCompatActivity() {
         setupMainContent()
 
     }
+
     private fun setupSlider() {
 
     }
 
     private fun setupMainContent() {
         val adapter = HomeViewPager(supportFragmentManager, lifecycle = lifecycle)
+        with(binding.viewPagerSlider) {
+            isUserInputEnabled = false
+            this.adapter = adapter
+        }
+        binding.run {
+            TabLayoutMediator(tabLayoutMain, viewPagerSlider) { tab, position ->
+                tab.text = if (position == 0) {
+                    "Movie"
+                } else {
+                    "Tv Show"
+                }
+            }
+                .attach()
+        }
     }
-
 
 
 }

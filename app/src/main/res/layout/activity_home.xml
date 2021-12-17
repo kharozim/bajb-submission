@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,38 +8,6 @@
     android:orientation="vertical"
     tools:context=".home.HomeActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:tabIndicatorColor="@color/white"
-        app:tabTextColor="@color/white">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/app_name" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Tv Show" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <!--    <com.google.android.material.tabs.TabLayout-->
-    <!--        android:id="@+id/tabLayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/viewPagerSlider">-->
-
-    <!--        <com.google.android.material.tabs.TabItem-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Movie" />-->
-    <!--    </com.google.android.material.tabs.TabLayout>-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerSlider"
         android:layout_width="match_parent"
@@ -57,5 +25,18 @@
         app:layout_constraintTop_toTopOf="@id/viewPagerSlider"
         tools:visibility="visible" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPagerSlider" />
 
-</LinearLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutMain" />
+</androidx.constraintlayout.widget.ConstraintLayout>
