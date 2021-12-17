@@ -6,19 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".FirstScreenActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Spash Screen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/ivVideo"
         android:layout_width="96dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_height="96dp"
         android:src="@drawable/logo_video"
         app:layout_constraintBottom_toBottomOf="parent"
