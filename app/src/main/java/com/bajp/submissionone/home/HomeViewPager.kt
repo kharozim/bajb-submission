@@ -13,7 +13,7 @@ class HomeViewPager(
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
-        val isMovie = position==0
-        return Fragment()
+        val isMovie = position == 0
+        return HomeFragment.onSaveInstance(isMovie)
     }
 }

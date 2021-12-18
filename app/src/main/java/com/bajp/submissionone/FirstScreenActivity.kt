@@ -18,9 +18,10 @@ class FirstScreenActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(binding.root)
         lifecycleScope.launchWhenStarted {
-            delay(2000)
+            delay(1000)
             val intent = Intent(this@FirstScreenActivity, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
