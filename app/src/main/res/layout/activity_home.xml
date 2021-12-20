@@ -6,24 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".home.HomeActivity">
+    tools:context=".ui.home.HomeActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerSlider"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/loadingSlider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/viewPagerSlider"
-        app:layout_constraintEnd_toEndOf="@id/viewPagerSlider"
-        app:layout_constraintStart_toStartOf="@id/viewPagerSlider"
-        app:layout_constraintTop_toTopOf="@id/viewPagerSlider"
-        tools:visibility="visible" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutMain"
@@ -36,12 +27,12 @@
         app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/movie" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tv_show" />
     </com.google.android.material.tabs.TabLayout>
@@ -52,4 +43,15 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabLayoutMain" />
+
+    <TextView
+        android:id="@+id/tvHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ini test"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

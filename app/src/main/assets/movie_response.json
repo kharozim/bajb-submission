@@ -19,7 +19,7 @@
       "name": "Spider-Man: No Way Home",
       "video": false,
       "rating": 8.8,
-      "vote_count": 573
+      "rating_count": 573
     },
     {
       "adult": false,
@@ -39,7 +39,7 @@
       "name": "Venom: Let There Be Carnage",
       "video": false,
       "rating": 7.2,
-      "vote_count": 4596
+      "rating_count": 4596
     },
     {
       "adult": false,
@@ -60,7 +60,7 @@
       "name": "Red Notice",
       "video": false,
       "rating": 6.8,
-      "vote_count": 2047
+      "rating_count": 2047
     },
     {
       "adult": false,
@@ -80,7 +80,7 @@
       "name": "Shang-Chi and the Legend of the Ten Rings",
       "video": false,
       "rating": 7.8,
-      "vote_count": 4296
+      "rating_count": 4296
     },
     {
       "adult": false,
@@ -101,7 +101,7 @@
       "name": "Encanto",
       "video": false,
       "rating": 7.4,
-      "vote_count": 340
+      "rating_count": 340
     },
     {
       "adult": false,
@@ -121,7 +121,7 @@
       "name": "Clifford the Big Red Dog",
       "video": false,
       "rating": 7.5,
-      "vote_count": 595
+      "rating_count": 595
     },
     {
       "adult": false,
@@ -141,7 +141,7 @@
       "name": "The Last Duel",
       "video": false,
       "rating": 7.6,
-      "vote_count": 945
+      "rating_count": 945
     },
     {
       "adult": false,
@@ -161,7 +161,7 @@
       "name": "Chernobyl: Abyss",
       "video": false,
       "rating": 6.3,
-      "vote_count": 238
+      "rating_count": 238
     },
     {
       "adult": false,
@@ -182,7 +182,7 @@
       "name": "Ron's Gone Wrong",
       "video": false,
       "rating": 8.5,
-      "vote_count": 367
+      "rating_count": 367
     },
     {
       "adult": false,
@@ -202,7 +202,7 @@
       "name": "Diary of a Wimpy Kid",
       "video": false,
       "rating": 7,
-      "vote_count": 77
+      "rating_count": 77
     },
     {
       "adult": false,
@@ -224,7 +224,7 @@
       "name": "Eternals",
       "video": false,
       "rating": 7.1,
-      "vote_count": 1431
+      "rating_count": 1431
     },
     {
       "adult": false,
@@ -244,7 +244,7 @@
       "name": "Last Shoot Out",
       "video": false,
       "rating": 6.9,
-      "vote_count": 33
+      "rating_count": 33
     },
     {
       "adult": false,
@@ -264,7 +264,7 @@
       "name": "No Time to Die",
       "video": false,
       "rating": 7.5,
-      "vote_count": 2564
+      "rating_count": 2564
     },
     {
       "adult": false,
@@ -285,7 +285,7 @@
       "name": "Spider-Man: Homecoming",
       "video": false,
       "rating": 7.4,
-      "vote_count": 17357
+      "rating_count": 17357
     },
     {
       "adult": false,
@@ -305,7 +305,7 @@
       "name": "Spider-Man: Far From Home",
       "video": false,
       "rating": 7.5,
-      "vote_count": 11226
+      "rating_count": 11226
     },
     {
       "adult": false,
@@ -325,7 +325,7 @@
       "name": "The Amazing Spider-Man",
       "video": false,
       "rating": 6.6,
-      "vote_count": 13783
+      "rating_count": 13783
     },
     {
       "adult": false,
@@ -344,7 +344,7 @@
       "name": "The Seven Deadly Sins: Cursed by Light",
       "video": false,
       "rating": 8.1,
-      "vote_count": 245
+      "rating_count": 245
     },
     {
       "adult": false,
@@ -364,7 +364,7 @@
       "name": "The Simpsons in Plusaversary",
       "video": false,
       "rating": 6.7,
-      "vote_count": 167
+      "rating_count": 167
     },
     {
       "adult": false,
@@ -385,7 +385,7 @@
       "name": "Free Guy",
       "video": false,
       "rating": 7.8,
-      "vote_count": 4119
+      "rating_count": 4119
     },
     {
       "adult": false,
@@ -403,7 +403,7 @@
       "name": "Garota da Moto",
       "video": false,
       "rating": 4.9,
-      "vote_count": 4
+      "rating_count": 4
     }
   ]
 }

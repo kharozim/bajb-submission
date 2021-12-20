@@ -2,7 +2,7 @@
   "results": [
     {
       "image_slider": "/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
-      "first_air_date": "2021-11-24",
+      "release_date": "2021-11-24",
       "genre_ids": [
         10759,
         18
@@ -22,7 +22,7 @@
     },
     {
       "image_slider": "/xAKMj134XHQVNHLC6rWsccLMenG.jpg",
-      "first_air_date": "2021-10-12",
+      "release_date": "2021-10-12",
       "genre_ids": [
         10765,
         80
@@ -42,7 +42,7 @@
     },
     {
       "image_slider": "/1P3QtW1IkivqDrKbbwuR0zCYIf8.jpg",
-      "first_air_date": "2021-11-18",
+      "release_date": "2021-11-18",
       "genre_ids": [
         10765,
         18,
@@ -63,7 +63,7 @@
     },
     {
       "image_slider": "/pkOSjcllDSs4WP9i8DGkw9VgF5Q.jpg",
-      "first_air_date": "2015-07-06",
+      "release_date": "2015-07-06",
       "genre_ids": [
         10764,
         10751
@@ -83,7 +83,7 @@
     },
     {
       "image_slider": "/yfXSvNfF43S0cxpxCEKaU17yZ64.jpg",
-      "first_air_date": "1983-09-19",
+      "release_date": "1983-09-19",
       "genre_ids": [
         10751
       ],
@@ -102,7 +102,7 @@
     },
     {
       "image_slider": "/wlvnysn2hHctqP5JUPiUE2OsHA.jpg",
-      "first_air_date": "2017-12-01",
+      "release_date": "2017-12-01",
       "genre_ids": [
         35,
         10767
@@ -122,7 +122,7 @@
     },
     {
       "image_slider": "/vjcuLy14kxgxCaBToAudZWrGQQh.jpg",
-      "first_air_date": "2021-01-18",
+      "release_date": "2021-01-18",
       "genre_ids": [],
       "id": 117031,
       "name": "People Puzzler",
@@ -137,7 +137,7 @@
     },
     {
       "image_slider": "/8lBlBItnehgOAwFt0ezxlXuWeIO.jpg",
-      "first_air_date": "2021-11-08",
+      "release_date": "2021-11-08",
       "genre_ids": [
         10766,
         18
@@ -157,7 +157,7 @@
     },
     {
       "image_slider": "/2E6HJCzNB0K6wQV6gXGd9VSZiXa.jpg",
-      "first_air_date": "2021-12-01",
+      "release_date": "2021-12-01",
       "genre_ids": [
         35,
         10764
@@ -177,7 +177,7 @@
     },
     {
       "image_slider": "/eD2U2RwxQosUDwvu19n46KvJEf9.jpg",
-      "first_air_date": "2021-09-13",
+      "release_date": "2021-09-13",
       "genre_ids": [
         18,
         35
@@ -197,7 +197,7 @@
     },
     {
       "image_slider": "/75XgXxvZ7bYg6sRIBQKDdBlyTFY.jpg",
-      "first_air_date": "2021-08-23",
+      "release_date": "2021-08-23",
       "genre_ids": [
         18,
         10766
@@ -217,7 +217,7 @@
     },
     {
       "image_slider": "/h57VktoyPvVJsKx0s4EVewwAqDR.jpg",
-      "first_air_date": "2021-12-01",
+      "release_date": "2021-12-01",
       "genre_ids": [
         10751,
         10762
@@ -237,7 +237,7 @@
     },
     {
       "image_slider": null,
-      "first_air_date": "2021-10-17",
+      "release_date": "2021-10-17",
       "genre_ids": [
         10764
       ],
@@ -254,7 +254,7 @@
     },
     {
       "image_slider": "/9PEToOQQIjhvA88dMAAIlEGnFVa.jpg",
-      "first_air_date": "2021-12-01",
+      "release_date": "2021-12-01",
       "genre_ids": [
         10762,
         10751,
@@ -275,7 +275,7 @@
     },
     {
       "image_slider": "/4TqrmfFDGaPeItQUEPTJoovlo7Y.jpg",
-      "first_air_date": "2021-11-07",
+      "release_date": "2021-11-07",
       "genre_ids": [],
       "id": 139282,
       "name": "Pip and Posy",
@@ -290,7 +290,7 @@
     },
     {
       "image_slider": "/3NxyVxfL5zM7k4E36bSJEjFLqCE.jpg",
-      "first_air_date": "2021-12-01",
+      "release_date": "2021-12-01",
       "genre_ids": [],
       "id": 138890,
       "name": "An Honorable Christmas With Knyckertz",
@@ -305,7 +305,7 @@
     },
     {
       "image_slider": "/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
-      "first_air_date": "2017-05-02",
+      "release_date": "2017-05-02",
       "genre_ids": [
         80,
         18
@@ -325,7 +325,7 @@
     },
     {
       "image_slider": "/41yaWnIT8AjIHiULHtTbKNzZTjc.jpg",
-      "first_air_date": "2014-10-07",
+      "release_date": "2014-10-07",
       "genre_ids": [
         18,
         10765
@@ -345,7 +345,7 @@
     },
     {
       "image_slider": "/6W8zEF5jE9ErdhzatZBVI7fkpsP.jpg",
-      "first_air_date": "2021-11-28",
+      "release_date": "2021-11-28",
       "genre_ids": [
         10764
       ],
@@ -364,7 +364,7 @@
     },
     {
       "image_slider": "/pCeDvEx7Fg5Lk5ufc6tILx13Lk6.jpg",
-      "first_air_date": "2018-10-01",
+      "release_date": "2018-10-01",
       "genre_ids": [
         16,
         10762

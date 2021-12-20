@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.bajp.submissionone.databinding.ActivityFirstScreenBinding
-import com.bajp.submissionone.home.HomeActivity
+import com.bajp.submissionone.ui.home.HomeActivity
 import kotlinx.coroutines.delay
 
 class FirstScreenActivity : AppCompatActivity() {

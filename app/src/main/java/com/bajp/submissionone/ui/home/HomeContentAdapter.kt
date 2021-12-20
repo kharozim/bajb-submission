@@ -1,4 +1,4 @@
-package com.bajp.submissionone.home
+package com.bajp.submissionone.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,12 +9,8 @@ import com.bumptech.glide.Glide
 
 class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>() {
 
-    interface HomeContentClick {
-        fun onContentClick(data: Any?, position: Int)
-    }
-
-    private var onItemClick: HomeContentClick? = null
-    fun clickItem(listener: HomeContentClick) {
+    private var onItemClick: ItemClick? = null
+    fun clickItem(listener: ItemClick) {
         onItemClick = listener
     }
 
@@ -48,7 +44,7 @@ class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>
             binding.run {
                 Glide.with(root.context).load(item.imagePoster).into(ivImage)
                 root.setOnClickListener {
-                    onItemClick?.onContentClick(item, position)
+                    onItemClick?.onItemClick(item, position)
                 }
             }
         }

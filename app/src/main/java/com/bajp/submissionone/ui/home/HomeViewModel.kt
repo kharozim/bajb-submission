@@ -1,4 +1,4 @@
-package com.bajp.submissionone.home
+package com.bajp.submissionone.ui.home
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -7,18 +7,15 @@ import androidx.lifecycle.ViewModel
 import com.bajp.submissionone.data.ContentEntity
 import com.bajp.submissionone.data.repository.IRepository
 import com.bajp.submissionone.data.repository.Repository
-import com.bajp.submissionone.utils.DataUtil
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: IRepository) : ViewModel() {
 
     private val _listMovie = MutableLiveData<ContentEntity>()
     val listMovie: LiveData<ContentEntity>
         get() = _listMovie
 
-    fun getListMovie(context: Context) {
-        val repository: IRepository = Repository()
-        val json = DataUtil.generateDataMovie(context)
-        val data = repository.getDataMovie(json ?: "")
+    fun getListMovie() {
+        val data = repository.getDataMovie()
         _listMovie.postValue(data)
     }
 
@@ -26,10 +23,8 @@ class HomeViewModel : ViewModel() {
     val listTV: LiveData<ContentEntity>
         get() = _listTV
 
-    fun getListTV(context: Context) {
-        val repository: IRepository = Repository()
-        val json = DataUtil.generateDataTV(context)
-        val data = repository.getDataTv(json ?: "")
+    fun getListTV() {
+        val data = repository.getDataTv()
         _listTV.postValue(data)
     }
 

@@ -1,29 +1,46 @@
 package com.bajp.submissionone.data.repository
 
 import com.bajp.submissionone.data.ContentEntity
-import com.google.gson.Gson
+import com.bajp.submissionone.data.entities.ContentItemEntity
+import com.bajp.submissionone.utils.DataUtil
 
 class Repository : IRepository {
 
-    override fun getDataMovie(dataResource: String): ContentEntity {
-        val data = Gson().fromJson(dataResource, ContentEntity::class.java)
-        data.results.forEach {
+    override fun getDataMovie(): ContentEntity {
+        val response = DataUtil.generateDataMovie()
+        response.results.forEach {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
+        return response
+    }
+
+    override fun getDataTv(): ContentEntity {
+        val response = DataUtil.generateDataTV()
+        response.results.forEach {
+            it.imagePoster = IMAGE_URL + it.imagePoster
+            it.imageSlider = IMAGE_URL + it.imageSlider
+        }
+        return response
+    }
+
+    override fun getDetailMovie(id: Int): ContentItemEntity? {
+        val response = DataUtil.generateDataMovie()
+        val data = response.results.find { it.id == id }
+        data?.imagePoster = IMAGE_URL + data?.imagePoster
+        data?.imageSlider = IMAGE_URL + data?.imageSlider
         return data
     }
 
-    override fun getDataTv(dataResource: String): ContentEntity {
-        val data = Gson().fromJson(dataResource, ContentEntity::class.java)
-        data.results.forEach {
-            it.imagePoster = IMAGE_URL + it.imagePoster
-            it.imageSlider = IMAGE_URL + it.imageSlider
-        }
+    override fun getDetailTv(id: Int): ContentItemEntity? {
+        val response = DataUtil.generateDataTV()
+        val data = response.results.find { it.id == id }
+        data?.imagePoster = IMAGE_URL + data?.imagePoster
+        data?.imageSlider = IMAGE_URL + data?.imageSlider
         return data
     }
 
     companion object {
-        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w300"
+        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }

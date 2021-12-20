@@ -1,4 +1,4 @@
-package com.bajp.submissionone.home
+package com.bajp.submissionone.ui.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

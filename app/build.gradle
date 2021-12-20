@@ -49,11 +49,17 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$androidxActivity"
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
 
-    //testing
+    //Testing
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
+    androidTestImplementation "androidx.test:rules:$androidxTestVersion"
+    androidTestImplementation "androidx.test:runner:$androidxTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
 
+    //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 

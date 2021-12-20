@@ -1,21 +1,19 @@
-package com.bajp.submissionone.home
+package com.bajp.submissionone.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.bajp.submissionone.data.entities.ContentItemEntity
 import com.bajp.submissionone.databinding.FragmentHomeBinding
+import com.bajp.submissionone.ui.detail.DetailActivity
 
 class HomeFragment : Fragment() {
 
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-    private val homeViewModel: HomeViewModel by viewModels()
+//    private val homeViewModel: HomeViewModel by viewModels()
 
     private var isMovie = false
     override fun onCreateView(
@@ -45,31 +43,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupMovie() {
-        homeViewModel.getListMovie(requireContext())
-        homeViewModel.listMovie.observe(viewLifecycleOwner, {
-            showData(it.results)
+        activity().homeViewModel.getListMovie()
+        activity().homeViewModel.listMovie.observe(viewLifecycleOwner, {
+            showData(it.results, true)
         })
     }
 
     private fun setupTv() {
-        homeViewModel.getListTV(requireContext())
-        homeViewModel.listTV.observe(viewLifecycleOwner, {
-            showData(it.results)
+        activity().homeViewModel.getListTV()
+        activity().homeViewModel.listTV.observe(viewLifecycleOwner, {
+            showData(it.results, false)
         })
     }
 
-    private fun showData(results: List<ContentItemEntity>) {
+    private fun showData(results: List<ContentItemEntity>, isMovie: Boolean) {
         val adapter = HomeContentAdapter()
-        adapter.clickItem(object : HomeContentAdapter.HomeContentClick {
-            override fun onContentClick(data: Any?, position: Int) {
+        adapter.clickItem(object : ItemClick {
+            override fun onItemClick(data: Any?, position: Int) {
                 data as ContentItemEntity
-                Toast.makeText(requireContext(), data.name, Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DETAIL_IS_MOVIE, isMovie)
+                intent.putExtra(DetailActivity.EXTRA_DETAIL_ID, data.id)
+                startActivity(intent)
             }
         })
         adapter.setItems(results)
         binding.rvContent.adapter = adapter
     }
 
+    private fun activity() = requireActivity() as HomeActivity
 
     companion object {
         const val IS_MOVIE = "IS_MOVIE"
