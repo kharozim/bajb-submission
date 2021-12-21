@@ -22,7 +22,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class HomeActivityTest {
 
-    private val dummyMovie = DataUtil.generateDataMovie().results
+    private val dummyMovie = DataUtil.generateDataMovie()
+    private val dummyTv = DataUtil.generateDataTV()
 
     @Before
     fun setup() {
@@ -30,14 +31,32 @@ class HomeActivityTest {
     }
 
     @Test
-    fun runFirst(){
-//        onView(withId(R.id.tvHome)).check(matches(ViewMatchers.withText("ini test")))
-//
-//        onView(withId(R.id.viewPagerContent))
-//            .check(matches(isDisplayed()))
-//        onView(withId(R.id.rvContent))
-//            .check(matches(isDisplayed()))
-        onView(withId(R.id.rvContent))
-            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size)).perform(click())
+    fun openTvShow() {
+        delayTwoSecond()
+        onView(ViewMatchers.withText("TV SHOW"))
+            .check(matches(isDisplayed()))
+        onView(ViewMatchers.withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rvContent)).check(matches(isDisplayed()))
+        onView(withId(R.id.rvContent)).perform(
+            RecyclerViewActions.scrollToPosition<HomeContentAdapter.MyViewHolder>(
+                10
+            )
+        )
+        onView(withId(R.id.rvContent)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
+                7, click()
+            )
+        )
+//        onView(withId(R.id.tvName)).check(matches(withText(dummyTv.results[19].name)))
+        delayTwoSecond()
+    }
+
+
+    private fun delayTwoSecond() {
+        try {
+            Thread.sleep(2000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
     }
 }

@@ -121,10 +121,6 @@ class HomeActivity : AppCompatActivity() {
     private val sliderTime = 3000L
     private val sliderHandler = Handler(Looper.getMainLooper())
     private val sliderRunnable = Runnable {
-        Log.e(
-            "TAG",
-            "cek runable: ${binding.viewPagerSlider.currentItem} = ${(binding.viewPagerSlider.adapter?.itemCount ?: 0) - 1}",
-        )
         binding.run {
             viewPagerSlider.currentItem++
             if (viewPagerSlider.currentItem == (viewPagerSlider.adapter?.itemCount ?: 0) - 1) {

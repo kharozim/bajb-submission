@@ -9,5 +9,6 @@
     <string name="data_not_found">Data Not Found</string>
     <string name="icon_share">Icon Share</string>
     <string name="share_text">Segera tonton film terbaru berikut! *%1s* akan tayang pada *%2s*  </string>
+    <string name="image_item_home_content">image item home content</string>
 
 </resources>
