@@ -1,11 +1,9 @@
 package com.bajp.submissionone.ui.home
 
-import com.bajp.submissionone.data.ContentEntity
+import com.bajp.submissionone.data.entities.ContentEntity
 import com.bajp.submissionone.data.repository.IRepository
 import com.bajp.submissionone.data.repository.Repository
-import com.bajp.submissionone.data.repository.RepositoryTest
 import com.bajp.submissionone.utils.DataUtil
-import com.google.gson.Gson
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Test
@@ -16,8 +14,6 @@ class HomeViewModelTest : TestCase() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var repository: IRepository
     private var contentEntity: ContentEntity? = null
-
-
 
     @Before
     fun before() {
@@ -38,8 +34,8 @@ class HomeViewModelTest : TestCase() {
         contentEntity = repository.getDataMovie() ?: ContentEntity()
         assertNotNull(contentEntity)
         assertEquals(
-            Gson().toJson(dummyMovie),
-            Gson().toJson(contentEntity)
+            dummyMovie.results.size,
+            contentEntity?.results?.size ?: 0
         )
     }
 
@@ -54,7 +50,7 @@ class HomeViewModelTest : TestCase() {
         }
         contentEntity = repository.getDataTv() ?: ContentEntity()
         assertNotNull(contentEntity)
-        assertEquals(Gson().toJson(dummyTv), Gson().toJson(contentEntity))
+        assertEquals(dummyTv.results.size, contentEntity?.results?.size ?: 0)
     }
 
     companion object {

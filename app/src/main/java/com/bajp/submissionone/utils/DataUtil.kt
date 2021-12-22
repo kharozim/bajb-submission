@@ -1,6 +1,6 @@
 package com.bajp.submissionone.utils
 
-import com.bajp.submissionone.data.ContentEntity
+import com.bajp.submissionone.data.entities.ContentEntity
 import com.bajp.submissionone.data.entities.ContentItemEntity
 
 object DataUtil {

@@ -16,20 +16,20 @@
             android:exported="false"
             android:label="Detail" />
         <activity
-            android:name=".FirstScreenActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".ui.FirstScreenActivity"
             android:exported="true">
 
-        </activity>
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:exported="true"
-            android:label="Home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="true"
+            android:label="Home" />
     </application>
 
 </manifest>

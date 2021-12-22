@@ -1,6 +1,6 @@
 package com.bajp.submissionone.data.repository
 
-import com.bajp.submissionone.data.ContentEntity
+import com.bajp.submissionone.data.entities.ContentEntity
 import com.bajp.submissionone.data.entities.ContentItemEntity
 
 interface IRepository {

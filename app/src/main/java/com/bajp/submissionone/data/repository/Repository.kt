@@ -1,14 +1,14 @@
 package com.bajp.submissionone.data.repository
 
-import com.bajp.submissionone.data.ContentEntity
+import com.bajp.submissionone.data.entities.ContentEntity
 import com.bajp.submissionone.data.entities.ContentItemEntity
 import com.bajp.submissionone.utils.DataUtil
 
 class Repository : IRepository {
 
     override fun getDataMovie(): ContentEntity? {
-        val response: ContentEntity? = DataUtil.generateDataMovie()
-        response?.results?.forEach {
+        val response = DataUtil.generateDataMovie()
+        response.results.forEach {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
@@ -16,8 +16,8 @@ class Repository : IRepository {
     }
 
     override fun getDataTv(): ContentEntity? {
-        val response: ContentEntity? = DataUtil.generateDataTV()
-        response?.results?.forEach {
+        val response = DataUtil.generateDataTV()
+        response.results.forEach {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }

@@ -3,11 +3,13 @@ package com.bajp.submissionone.ui.detail
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissionone.R
 import com.bajp.submissionone.data.entities.ContentItemEntity
+import com.bajp.submissionone.data.repository.Repository
 import com.bajp.submissionone.databinding.ActivityDetailBinding
 import com.bajp.submissionone.databinding.ItemDialogDetailBinding
 import com.bumptech.glide.Glide
@@ -20,11 +22,17 @@ class DetailActivity : AppCompatActivity() {
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val isMovie by lazy { intent.getBooleanExtra(EXTRA_DETAIL_IS_MOVIE, false) }
     private val detailId by lazy { intent.getIntExtra(EXTRA_DETAIL_ID, 0) }
-    private val viewModel: DetailViewModel by viewModels()
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return DetailViewModel(Repository()) as T
+            }
+        })[DetailViewModel::class.java]
+
         getData()
         setObserver()
 
@@ -86,7 +94,8 @@ class DetailActivity : AppCompatActivity() {
     private fun showDialogImage(imagePoster: String) {
         val dialog = Dialog(this, R.style.Base_Theme_AppCompat_Dialog_MinWidth)
         val dialogBinding = ItemDialogDetailBinding.inflate(layoutInflater)
-        Glide.with(this).load(imagePoster).placeholder(R.mipmap.ic_launcher).into(dialogBinding.ivDialogPoster)
+        Glide.with(this).load(imagePoster).placeholder(R.mipmap.ic_launcher)
+            .into(dialogBinding.ivDialogPoster)
         dialog.setContentView(dialogBinding.root)
         dialog.show()
     }

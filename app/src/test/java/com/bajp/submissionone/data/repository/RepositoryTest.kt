@@ -25,7 +25,8 @@ class RepositoryTest : TestCase() {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
-        assertEquals(Gson().toJson(response), Gson().toJson(dummyMovie))
+        assertNotNull(response)
+        assertEquals(dummyMovie.results.size, response?.results?.size ?: 0)
     }
 
     @Test
@@ -37,7 +38,8 @@ class RepositoryTest : TestCase() {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
-        assertEquals(Gson().toJson(dummyTv), Gson().toJson(response))
+        assertNotNull(response)
+        assertEquals(dummyTv.results.size, response?.results?.size ?: 0)
     }
 
     @Test

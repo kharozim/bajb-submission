@@ -1,12 +1,10 @@
 package com.bajp.submissionone.ui.home
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bajp.submissionone.data.ContentEntity
+import com.bajp.submissionone.data.entities.ContentEntity
 import com.bajp.submissionone.data.repository.IRepository
-import com.bajp.submissionone.data.repository.Repository
 
 class HomeViewModel(private val repository: IRepository) : ViewModel() {
 

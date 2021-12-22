@@ -1,9 +1,8 @@
-package com.bajp.submissionone
+package com.bajp.submissionone.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bajp.submissionone.databinding.ActivityFirstScreenBinding
 import com.bajp.submissionone.ui.home.HomeActivity
@@ -15,7 +14,6 @@ class FirstScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         setContentView(binding.root)
         lifecycleScope.launchWhenStarted {
             delay(1000)

@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".FirstScreenActivity">
+    tools:context=".ui.FirstScreenActivity">
 
     <ImageView
         android:id="@+id/ivVideo"
         android:layout_width="96dp"
         android:visibility="visible"
         android:layout_height="96dp"
+        android:contentDescription="@string/image_first_screen"
         android:src="@drawable/logo_video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

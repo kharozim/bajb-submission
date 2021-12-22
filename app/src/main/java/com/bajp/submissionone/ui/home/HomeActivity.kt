@@ -4,13 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.size
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -18,7 +14,6 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bajp.submissionone.R
 import com.bajp.submissionone.data.entities.ContentItemEntity
-import com.bajp.submissionone.data.repository.IRepository
 import com.bajp.submissionone.data.repository.Repository
 import com.bajp.submissionone.databinding.ActivityHomeBinding
 import com.bajp.submissionone.ui.detail.DetailActivity
@@ -103,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
         val slideTransformer = CompositePageTransformer()
         slideTransformer.addTransformer(MarginPageTransformer(50))
         slideTransformer.addTransformer { page, position ->
-            val distance = 1 - abs(position)
+            val distance = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + distance * 0.15f
         }
 

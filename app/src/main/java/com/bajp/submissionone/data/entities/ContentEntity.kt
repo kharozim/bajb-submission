@@ -1,6 +1,4 @@
-package com.bajp.submissionone.data
-
-import com.bajp.submissionone.data.entities.ContentItemEntity
+package com.bajp.submissionone.data.entities
 
 data class ContentEntity(
     val results: List<ContentItemEntity> = emptyList()
