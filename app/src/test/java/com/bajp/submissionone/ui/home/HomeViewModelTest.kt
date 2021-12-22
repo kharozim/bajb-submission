@@ -14,8 +14,9 @@ import org.mockito.Mockito.mock
 class HomeViewModelTest : TestCase() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var contentEntity: ContentEntity
     private lateinit var repository: IRepository
+    private var contentEntity: ContentEntity? = null
+
 
 
     @Before
@@ -34,10 +35,11 @@ class HomeViewModelTest : TestCase() {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
-        contentEntity = repository.getDataMovie()
+        contentEntity = repository.getDataMovie() ?: ContentEntity()
+        assertNotNull(contentEntity)
         assertEquals(
-            Gson().toJson(dummyMovie.results[0].id),
-            Gson().toJson(contentEntity.results[0].id)
+            Gson().toJson(dummyMovie),
+            Gson().toJson(contentEntity)
         )
     }
 
@@ -50,7 +52,8 @@ class HomeViewModelTest : TestCase() {
             it.imagePoster = IMAGE_URL + it.imagePoster
             it.imageSlider = IMAGE_URL + it.imageSlider
         }
-        contentEntity = repository.getDataTv()
+        contentEntity = repository.getDataTv() ?: ContentEntity()
+        assertNotNull(contentEntity)
         assertEquals(Gson().toJson(dummyTv), Gson().toJson(contentEntity))
     }
 

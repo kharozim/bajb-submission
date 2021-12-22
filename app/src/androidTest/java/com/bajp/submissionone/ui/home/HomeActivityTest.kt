@@ -6,15 +6,16 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.pressBack
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bajp.submissionone.R
 import com.bajp.submissionone.utils.DataUtil
+import kotlinx.coroutines.delay
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,14 +33,13 @@ class HomeActivityTest {
 
     @Test
     fun openTvShow() {
-        delayTwoSecond()
-        onView(ViewMatchers.withText("TV SHOW"))
+        onView(withText("TV SHOW"))
             .check(matches(isDisplayed()))
-        onView(ViewMatchers.withText("TV SHOW")).perform(click())
+        onView(withText("TV SHOW")).perform(click())
         onView(withId(R.id.rvContent)).check(matches(isDisplayed()))
         onView(withId(R.id.rvContent)).perform(
             RecyclerViewActions.scrollToPosition<HomeContentAdapter.MyViewHolder>(
-                10
+                7
             )
         )
         onView(withId(R.id.rvContent)).perform(
@@ -47,14 +47,34 @@ class HomeActivityTest {
                 7, click()
             )
         )
-//        onView(withId(R.id.tvName)).check(matches(withText(dummyTv.results[19].name)))
-        delayTwoSecond()
+        onView(withId(R.id.tvName)).check(matches(withText(dummyTv.results[7].name)))
     }
 
+    @Test
+    fun openMovie() {
+        onView(withText("MOVIE"))
+            .check(matches(isDisplayed()))
+        onView(withText("MOVIE")).perform(click())
+        onView(withId(R.id.rvContent)).check(matches(isDisplayed()))
+        onView(withId(R.id.rvContent)).perform(
+            RecyclerViewActions.scrollToPosition<HomeContentAdapter.MyViewHolder>(
+                5
+            )
+        )
+        onView(withId(R.id.rvContent)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
+                5, click()
+            )
+        )
+        onView(withId(R.id.tvName)).check(matches(withText(dummyMovie.results[5].name)))
+        onView(withId(R.id.ivPoster)).perform(click())
+        delayMiliSecond(1000)
+        onView(withId(R.id.ivDialogPoster)).check(matches(isDisplayed()))
+    }
 
-    private fun delayTwoSecond() {
+    private fun delayMiliSecond(milis: Long = 2000) {
         try {
-            Thread.sleep(2000)
+            Thread.sleep(milis)
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
