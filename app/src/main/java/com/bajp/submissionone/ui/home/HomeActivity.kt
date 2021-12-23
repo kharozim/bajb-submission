@@ -20,7 +20,6 @@ import com.bajp.submissionone.ui.detail.DetailActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.lang.Math.abs
 
 class HomeActivity : AppCompatActivity() {
 

@@ -2,6 +2,9 @@ package com.bajp.submissionone.ui.detail
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
@@ -23,6 +26,8 @@ class DetailActivity : AppCompatActivity() {
     private val isMovie by lazy { intent.getBooleanExtra(EXTRA_DETAIL_IS_MOVIE, false) }
     private val detailId by lazy { intent.getIntExtra(EXTRA_DETAIL_ID, 0) }
     private lateinit var viewModel: DetailViewModel
+    private lateinit var contentItem: ContentItemEntity
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
                 if (result != null) {
                     setView(result)
                 } else {
-                    showMessage("Data Not Found")
+                    showMessage(getString(R.string.data_not_found))
                 }
             })
         } else {
@@ -67,7 +72,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setView(result: ContentItemEntity) {
-
+        contentItem = result
         val dateRelease = formatDate(result.releaseDate)
         binding.run {
             Glide.with(this@DetailActivity)
@@ -82,9 +87,6 @@ class DetailActivity : AppCompatActivity() {
                 result.ratingCount.toString()
             )
             tvDescription.text = result.description
-            ivShare.setOnClickListener {
-                doShare(result)
-            }
             ivPoster.setOnClickListener {
                 showDialogImage(result.imagePoster)
             }
@@ -100,11 +102,27 @@ class DetailActivity : AppCompatActivity() {
         dialog.show()
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.share, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.ivShare) {
+            doShare(contentItem)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun doShare(result: ContentItemEntity) {
         val mimeType = "text/plain"
         ShareCompat.IntentBuilder(this)
             .setType(mimeType)
-            .setChooserTitle("Bagikan aplikasi ini sekarang")
+            .setChooserTitle(getString(R.string.share_now))
             .setText(resources.getString(R.string.share_text, result.name, result.releaseDate))
             .startChooser()
 

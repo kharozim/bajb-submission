@@ -13,14 +13,11 @@ import com.bajp.submissionone.ui.detail.DetailActivity
 class HomeFragment : Fragment() {
 
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-//    private val homeViewModel: HomeViewModel by viewModels()
-
     private var isMovie = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         isMovie =
             savedInstanceState?.getBoolean(IS_MOVIE, false) ?: (arguments?.getBoolean(IS_MOVIE)
                 ?: false)

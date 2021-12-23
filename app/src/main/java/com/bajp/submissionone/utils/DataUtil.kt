@@ -6,7 +6,7 @@ import com.bajp.submissionone.data.entities.ContentItemEntity
 object DataUtil {
 
     fun generateDataMovie(): ContentEntity {
-        val dataMovie = ContentEntity(
+        return ContentEntity(
             listOf(
                 ContentItemEntity(
                     imageSlider = "/VlHt27nCqOuTnuX6bku8QZapzO.jpg",
@@ -194,12 +194,11 @@ object DataUtil {
                 )
             )
         )
-        return dataMovie
     }
 
 
     fun generateDataTV(): ContentEntity {
-        val dataTv = ContentEntity(
+        return ContentEntity(
             listOf(
                 ContentItemEntity(
                     imageSlider = "/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
@@ -405,7 +404,6 @@ object DataUtil {
                 ),
             )
         )
-        return dataTv
     }
 
 }
