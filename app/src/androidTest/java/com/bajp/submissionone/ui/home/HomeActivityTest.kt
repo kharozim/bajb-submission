@@ -10,6 +10,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bajp.submissionone.R
 import com.bajp.submissionone.utils.DataUtil
+import com.bajp.submissionone.utils.FormatUtil
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,7 +23,6 @@ class HomeActivityTest {
 
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
-
 
     private fun openTvShow() {
         onView(withText("TV SHOW"))
@@ -48,31 +48,28 @@ class HomeActivityTest {
         )
     }
 
-
     @Test
     fun detailTvShow() {
-        openTvShow()
-        onView(withId(R.id.rvContent)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
-                3, click()
-            )
-        )
-        onView(withId(R.id.tvName)).check(matches(withText(dummyTv.results[3].name)))
-        onView(withId(R.id.ivPoster)).check(matches(isDisplayed()))
-        onView(withId(R.id.ivPoster)).perform(click())
-        onView(withId(R.id.ivDialogPoster)).check(matches(isDisplayed()))
-    }
+        val position = 0
+        val dummy = dummyTv.results[position]
+        val rating = dummy.rating
+        val ratingCount = dummy.ratingCount
+        val dateRelease = FormatUtil.formatDate(dummy.releaseDate)
 
-    @Test
-    fun shareTvShow() {
         openTvShow()
         onView(withId(R.id.rvContent)).perform(
             RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
-                0, click()
+                position, click()
             )
         )
         onView(withId(R.id.ivShare)).check(matches(isDisplayed()))
-        onView(withId(R.id.ivShare)).perform(click())
+        onView(withId(R.id.tvName)).check(matches(withText(dummy.name)))
+        onView(withId(R.id.tvDescription)).check(matches(withText(dummy.description)))
+        onView(withId(R.id.tvRelease)).check(matches(withText(dateRelease)))
+        onView(withId(R.id.tvRating)).check(matches(withText("$rating / 10 from $ratingCount Users")))
+        onView(withId(R.id.ivPoster)).check(matches(isDisplayed()))
+        onView(withId(R.id.ivPoster)).perform(click())
+        onView(withId(R.id.ivDialogPoster)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -80,44 +77,37 @@ class HomeActivityTest {
         openTvShow()
         onView(withId(R.id.viewPagerSlider)).check(matches(isDisplayed()))
         onView(withId(R.id.viewPagerSlider)).perform(swipeLeft())
-        onView(withId(R.id.viewPagerSlider)).perform(click())
-        onView(withId(R.id.ivPoster)).check(matches(isDisplayed()))
     }
-
 
     @Test
     fun detailMovie() {
+        val position = 0
+        val dummy = dummyMovie.results[position]
+        val rating = dummy.rating
+        val ratingCount = dummy.ratingCount
+        val dateRelease = FormatUtil.formatDate(dummy.releaseDate)
+
         openMovie()
         onView(withId(R.id.rvContent)).perform(
             RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
-                2, click()
+                position, click()
             )
         )
-
+        onView(withId(R.id.ivShare)).check(matches(isDisplayed()))
         onView(withId(R.id.ivPoster)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvName)).check(matches(withText(dummyMovie.results[2].name)))
+        onView(withId(R.id.tvName)).check(matches(withText(dummy.name)))
+        onView(withId(R.id.tvRelease)).check(matches(withText(dateRelease)))
+        onView(withId(R.id.tvRating)).check(matches(withText("$rating / 10 from $ratingCount Users")))
+        onView(withId(R.id.tvDescription)).check(matches(withText(dummy.description)))
         onView(withId(R.id.ivPoster)).perform(click())
         onView(withId(R.id.ivDialogPoster)).check(matches(isDisplayed()))
     }
 
-    @Test
-    fun shareMovie() {
-        openMovie()
-        onView(withId(R.id.rvContent)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<HomeContentAdapter.MyViewHolder>(
-                5, click()
-            )
-        )
-        onView(withId(R.id.ivShare)).check(matches(isDisplayed()))
-        onView(withId(R.id.ivShare)).perform(click())
-    }
 
     @Test
     fun sliderMovie() {
         openMovie()
         onView(withId(R.id.viewPagerSlider)).check(matches(isDisplayed()))
         onView(withId(R.id.viewPagerSlider)).perform(swipeLeft())
-        onView(withId(R.id.viewPagerSlider)).perform(click())
-        onView(withId(R.id.ivPoster)).check(matches(isDisplayed()))
     }
 }

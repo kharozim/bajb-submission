@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ import com.bajp.submissionone.data.entities.ContentItemEntity
 import com.bajp.submissionone.data.repository.Repository
 import com.bajp.submissionone.databinding.ActivityHomeBinding
 import com.bajp.submissionone.ui.detail.DetailActivity
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,7 +36,6 @@ class HomeActivity : AppCompatActivity() {
                 return HomeViewModel(Repository()) as T
             }
         })[HomeViewModel::class.java]
-
         setupMainContent()
     }
 
@@ -49,13 +50,30 @@ class HomeActivity : AppCompatActivity() {
             { tab, position ->
                 if (position == 0) {
                     tab.text = getString(R.string.movie)
-                    setupSlider(true)
+                    setupSlider(isMovie = true)
                 } else {
                     tab.text = getString(R.string.tv_show)
-                    setupSlider(false)
+                    setupSlider(isMovie = false)
                 }
             }
                 .attach()
+
+            tabLayoutMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    if (tab?.position == 0) {
+                        setupSlider(isMovie = true)
+                    } else {
+                        setupSlider(isMovie = false)
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
+
+            })
         }
     }
 
@@ -77,6 +95,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupViewPagerSlider(results: List<ContentItemEntity>, isMovie: Boolean) {
         val adapter = HomeViewPagerSlider(this, results)
+        adapter.notifyItemRangeChanged(0, adapter.itemCount)
         adapter.onItemClick(object : ItemClick {
             override fun onItemClick(data: Any?, position: Int) {
                 data as ContentItemEntity

@@ -15,6 +15,7 @@ import com.bajp.submissionone.data.entities.ContentItemEntity
 import com.bajp.submissionone.data.repository.Repository
 import com.bajp.submissionone.databinding.ActivityDetailBinding
 import com.bajp.submissionone.databinding.ItemDialogDetailBinding
+import com.bajp.submissionone.utils.FormatUtil
 import com.bumptech.glide.Glide
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -73,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setView(result: ContentItemEntity) {
         contentItem = result
-        val dateRelease = formatDate(result.releaseDate)
+        val dateRelease = FormatUtil.formatDate(result.releaseDate)
         binding.run {
             Glide.with(this@DetailActivity)
                 .load(result.imagePoster)
@@ -128,18 +129,6 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun formatDate(dateString: String): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val newDate =
-            try {
-                dateFormat.parse(dateString)
-            } catch (e: ParseException) {
-                null
-            }
-        val newFormat = SimpleDateFormat("MMM dd, yyyy")
-        val newDateFormat = newDate?.let { newFormat.format(it) }
-        return newDateFormat ?: ""
-    }
 
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
