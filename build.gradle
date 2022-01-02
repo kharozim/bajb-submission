@@ -23,6 +23,9 @@ ext {
     espressoVersion = '3.4.0'
     androidxTestVersion = '1.4.0'
     mockitoVersion = '3.6.0'
+    mockitoKotlinVersion = '2.2.0'
+    androidCoreTestVersion = '2.1.0'
+    idleResourceVersion = '3.3.0'
 
     androidxLegacy ='1.0.0'
     androidxNavigation = '2.3.5'

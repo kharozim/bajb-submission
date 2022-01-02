@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bajp.submissionone">
+    package="com.bajp.submissiontwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubmissionOne">
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name="com.bajp.submissiontwo.ui.detail.DetailActivity"
             android:exported="false"
             android:label="Detail" />
         <activity
             android:theme="@style/FirstScreenTheme"
-            android:name=".ui.FirstScreenActivity"
+            android:name="com.bajp.submissiontwo.ui.FirstScreenActivity"
             android:exported="true">
 
             <intent-filter>
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name="com.bajp.submissiontwo.ui.home.HomeActivity"
             android:exported="true"
             android:label="Home" />
     </application>
