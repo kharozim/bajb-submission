@@ -2,11 +2,15 @@ package com.bajp.submissiontwo.ui.home
 
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.test.espresso.IdlingRegistry
 import com.bajp.submissiontwo.data.entities.ContentEntity
 import com.bajp.submissiontwo.data.repository.IRepository
+import com.bajp.submissiontwo.data.repository.Repository
+import com.bajp.submissiontwo.utils.DataUtil
+import com.bajp.submissiontwo.utils.DataUtil2
 import com.bajp.submissiontwo.utils.EspressoIdlingResource
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.TestCase
@@ -17,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -35,6 +40,7 @@ class HomeViewModelTest : TestCase() {
 
     @Before
     fun setup() {
+        repository = mock(Repository::class.java)
         homeViewModel = HomeViewModel(repository)
         IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
     }
@@ -46,12 +52,12 @@ class HomeViewModelTest : TestCase() {
 
     @Test
     fun getListMovie() {
-        var listData = MutableLiveData<ContentEntity>()
-        `when`(repository.getDataMovie()).thenReturn(listData)
-        val listMovie = homeViewModel.getListMovie().value
+//        var listData = MutableLiveData<ContentEntity>()
+        `when`(repository.getDataMovie()).thenReturn(DataUtil2.generateDataMovie() as LiveData<ContentEntity>)
+        val listMovie = homeViewModel.getListMovie()
         verify<IRepository>(repository).getDataMovie()
         assertNotNull(listMovie)
-//        assertEquals(listMovie?.results?.size, mockData.value?.results?.size)
+//        assertNotNull(listMovie?.results?.size, mockData.value?.results?.size)
 
 //        homeViewModel.getListMovie().observeForever(observer)
 //        verify(observer).onChanged(mockData.value)
