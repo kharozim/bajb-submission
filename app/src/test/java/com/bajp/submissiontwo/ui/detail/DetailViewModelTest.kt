@@ -1,60 +1,85 @@
 package com.bajp.submissiontwo.ui.detail
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.repository.IRepository
 import com.bajp.submissiontwo.data.repository.Repository
 import com.bajp.submissiontwo.utils.DataUtil
+import com.bajp.submissiontwo.utils.DataUtil2
 import com.google.gson.Gson
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
 
-//    private lateinit var repository: Repository
-//    private lateinit var detailViewModel: DetailViewModel
-//    private lateinit var dataDetail: ContentItemEntity
-//    private val dataDummy = DataUtil
-//
-//    @Before
-//    fun setup() {
-//        dataDetail = mock(ContentItemEntity::class.java)
-//        repository = mock(Repository::class.java)
-//        detailViewModel = DetailViewModel(repository)
-//    }
-//
-//    @Test
-//    fun testGetDetailMovie() {
-//        val id = 566525
-//        repository = Repository()
-//        detailViewModel = DetailViewModel(repository)
-//        val response = repository.getDetailMovie(id)
-//        val listDummy = dataDummy.generateDataMovie().results
-//        val detailDummy = listDummy.find { it.id == id }
-//        detailDummy?.imagePoster = IMAGE_URL + detailDummy?.imagePoster
-//        detailDummy?.imageSlider = IMAGE_URL + detailDummy?.imageSlider
-//        assertNotNull(detailDummy)
-//        assertEquals(Gson().toJson(detailDummy), Gson().toJson(response))
-//    }
-//
-//    @Test
-//    fun testGetDetailTv() {
-//        val id = 2778
-//        repository = Repository()
-//        detailViewModel = DetailViewModel(repository)
-//        val response = repository.getDetailTv(id)
-//        val listDummy = dataDummy.generateDataTV().results
-//        val detailDummy = listDummy.find { it.id == id }
-//        detailDummy?.imagePoster = IMAGE_URL + detailDummy?.imagePoster
-//        detailDummy?.imageSlider = IMAGE_URL + detailDummy?.imageSlider
-//
-//        assertNotNull(detailDummy)
-//        assertEquals(Gson().toJson(detailDummy), Gson().toJson(response))
-//    }
+    private lateinit var viewModel: DetailViewModel
+    private val position = 2
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var repository: Repository
+
+    @Mock
+    private lateinit var observer: Observer<ContentItemEntity>
+
+    @Before
+    fun setup() {
+        viewModel = DetailViewModel(repository)
+    }
+
+    @Test
+    fun getDetailMovie() {
+
+        val dummyListMovie = DataUtil2.generateDataMovie()
+        val dummydetailMovie = dummyListMovie.results[position]
+        val movieId = dummyListMovie.results[position].id
+        val detailMovie = MutableLiveData<ContentItemEntity>()
+        detailMovie.value = dummydetailMovie
+
+        `when`(repository.getDetailMovie(movieId)).thenReturn(detailMovie)
+        val response = viewModel.getDetailMovie(movieId)
+        verify<IRepository>(repository).getDetailMovie(movieId)
+        assertNotNull(response)
+        assertEquals(detailMovie.value, response.value)
+
+        viewModel.getDetailMovie(movieId).observeForever(observer)
+        verify(observer).onChanged(dummydetailMovie)
+
+    }
+
+    @Test
+    fun getDetailTvShow() {
+
+        val dummyListTvShow = DataUtil2.generateDataTV()
+        val dummyDetailTvShow = dummyListTvShow.results[position]
+        val tvShowId = dummyListTvShow.results[position].id
+        val detailTvShow = MutableLiveData<ContentItemEntity>()
+        detailTvShow.value = dummyDetailTvShow
+
+        `when`(repository.getDetailTv(tvShowId)).thenReturn(detailTvShow)
+        val response = viewModel.getDetailTv(tvShowId)
+        verify<IRepository>(repository).getDetailTv(tvShowId)
+        assertNotNull(response)
+        assertEquals(detailTvShow.value, response.value)
+
+        viewModel.getDetailTv(tvShowId).observeForever(observer)
+        verify(observer).onChanged(dummyDetailTvShow)
+
+    }
 
     companion object {
         private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"

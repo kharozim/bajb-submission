@@ -197,7 +197,6 @@ object DataUtil {
 
     }
 
-
     fun generateDataTV(): List<TvShowResponse> {
         return listOf(
             TvShowResponse(
