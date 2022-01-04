@@ -2,6 +2,7 @@ package com.bajp.submissiontwo.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bajp.submissiontwo.data.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ItemsHomeContentBinding
@@ -15,10 +16,12 @@ class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>
     }
 
     private val items = ArrayList<ContentItemEntity>()
-    fun setItems(items: List<ContentItemEntity>) {
-        this.items.clear()
-        this.items.addAll(items)
-        notifyDataSetChanged()
+    fun setItems(newItems: List<ContentItemEntity>) {
+        val diffCallback = HomeDiffUtil(items, newItems)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        items.clear()
+        items.addAll(newItems)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

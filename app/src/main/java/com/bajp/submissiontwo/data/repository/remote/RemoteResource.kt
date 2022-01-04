@@ -33,7 +33,6 @@ class RemoteResource private constructor(private val apiConfig: ApiConfig) {
                 if (response.isSuccessful) {
                     val listMovie = response.body()?.results ?: emptyList()
                     callback.onAllMovieReceived(listMovie)
-
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
