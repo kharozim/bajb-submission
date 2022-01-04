@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val factory = ViewModelFactory.getInstance()
         sharedViewModel =
-            ViewModelProvider(requireActivity(), factory = factory).get(HomeViewModel::class.java)
+            ViewModelProvider(requireActivity(), factory = factory)[HomeViewModel::class.java]
         if (isMovie) {
             setupMovie()
         } else {
@@ -82,8 +82,6 @@ class HomeFragment : Fragment() {
         adapter.setItems(results)
         binding.rvContent.adapter = adapter
     }
-
-    private fun activity() = requireActivity() as HomeActivity
 
     companion object {
         const val IS_MOVIE = "IS_MOVIE"

@@ -1,11 +1,9 @@
 package com.bajp.submissiontwo.utils
 
-import com.bajp.submissiontwo.data.entities.ContentEntity
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
 import com.bajp.submissiontwo.data.repository.remote.response.MovieResponse
 import com.bajp.submissiontwo.data.repository.remote.response.TvShowResponse
 
-object DataUtil {
+object DataResponseUtil {
 
     fun generateDataMovie(): List<MovieResponse> {
         return listOf(

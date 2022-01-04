@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import com.bajp.submissiontwo.data.entities.ContentEntity
 import com.bajp.submissiontwo.data.repository.IRepository
 import com.bajp.submissiontwo.data.repository.Repository
-import com.bajp.submissiontwo.utils.DataUtil2
+import com.bajp.submissiontwo.utils.DataEntityUtil
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.TestCase
 import org.junit.Before
@@ -38,7 +38,7 @@ class HomeViewModelTest : TestCase() {
 
     @Test
     fun getListMovie() {
-        val dummyData = DataUtil2.generateDataMovie()
+        val dummyData = DataEntityUtil.generateDataMovie()
         val listData = MutableLiveData<ContentEntity>()
         listData.value = dummyData
         `when`(repository.getDataMovie()).thenReturn(listData)
@@ -53,7 +53,7 @@ class HomeViewModelTest : TestCase() {
 
     @Test
     fun testGetListTV() {
-        val dummyTv = DataUtil2.generateDataTV()
+        val dummyTv = DataEntityUtil.generateDataTV()
         val listData = MutableLiveData<ContentEntity>()
         listData.value = dummyTv
         `when`(repository.getDataTv()).thenReturn(listData)
@@ -64,9 +64,5 @@ class HomeViewModelTest : TestCase() {
 
         viewModel.getListTV().observeForever(observer)
         verify(observer).onChanged(dummyTv)
-    }
-
-    companion object {
-        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }

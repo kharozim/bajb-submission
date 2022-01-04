@@ -3,7 +3,7 @@ package com.bajp.submissiontwo.utils
 import com.bajp.submissiontwo.data.entities.ContentEntity
 import com.bajp.submissiontwo.data.entities.ContentItemEntity
 
-object DataUtil2 {
+object DataEntityUtil {
 
     fun generateDataMovie(): ContentEntity {
         return ContentEntity(

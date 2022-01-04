@@ -1,6 +1,5 @@
 package com.bajp.submissiontwo.utils
 
-import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.idling.CountingIdlingResource
 
 object EspressoIdlingResource {

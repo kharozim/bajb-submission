@@ -6,9 +6,7 @@ import androidx.lifecycle.Observer
 import com.bajp.submissiontwo.data.entities.ContentItemEntity
 import com.bajp.submissiontwo.data.repository.IRepository
 import com.bajp.submissiontwo.data.repository.Repository
-import com.bajp.submissiontwo.utils.DataUtil
-import com.bajp.submissiontwo.utils.DataUtil2
-import com.google.gson.Gson
+import com.bajp.submissiontwo.utils.DataEntityUtil
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -18,7 +16,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -44,7 +41,7 @@ class DetailViewModelTest {
     @Test
     fun getDetailMovie() {
 
-        val dummyListMovie = DataUtil2.generateDataMovie()
+        val dummyListMovie = DataEntityUtil.generateDataMovie()
         val dummydetailMovie = dummyListMovie.results[position]
         val movieId = dummyListMovie.results[position].id
         val detailMovie = MutableLiveData<ContentItemEntity>()
@@ -64,7 +61,7 @@ class DetailViewModelTest {
     @Test
     fun getDetailTvShow() {
 
-        val dummyListTvShow = DataUtil2.generateDataTV()
+        val dummyListTvShow = DataEntityUtil.generateDataTV()
         val dummyDetailTvShow = dummyListTvShow.results[position]
         val tvShowId = dummyListTvShow.results[position].id
         val detailTvShow = MutableLiveData<ContentItemEntity>()
@@ -79,10 +76,6 @@ class DetailViewModelTest {
         viewModel.getDetailTv(tvShowId).observeForever(observer)
         verify(observer).onChanged(dummyDetailTvShow)
 
-    }
-
-    companion object {
-        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }
 

@@ -47,7 +47,6 @@ class Repository private constructor(private val remoteDataSource: RemoteResourc
                 response.value = ContentEntity(result)
             }
         })
-        Log.e("TAG", "getlist2: ${response.value}", )
         return response
     }
 

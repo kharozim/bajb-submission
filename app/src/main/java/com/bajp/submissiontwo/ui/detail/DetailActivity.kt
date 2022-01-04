@@ -40,23 +40,25 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setObserver() {
         showLoading(true)
-        viewModel.getDetailMovie(detailId).observe(this, { result ->
-            if (result != null) {
-                setView(result)
-            } else {
-                showMessage(getString(R.string.data_not_found))
-            }
-            showLoading(false)
-        })
-
-        viewModel.getDetailTv(detailId).observe(this, { result ->
-            if (result != null) {
-                setView(result)
-            } else {
-                showMessage(getString(R.string.data_not_found))
-            }
-            showLoading(false)
-        })
+        if (isMovie) {
+            viewModel.getDetailMovie(detailId).observe(this, { result ->
+                if (result != null) {
+                    setView(result)
+                } else {
+                    showMessage(getString(R.string.data_not_found))
+                }
+                showLoading(false)
+            })
+        } else {
+            viewModel.getDetailTv(detailId).observe(this, { result ->
+                if (result != null) {
+                    setView(result)
+                } else {
+                    showMessage(getString(R.string.data_not_found))
+                }
+                showLoading(false)
+            })
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

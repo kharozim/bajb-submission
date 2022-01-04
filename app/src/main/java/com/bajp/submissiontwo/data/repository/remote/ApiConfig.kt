@@ -21,7 +21,7 @@ object ApiConfig {
                 val origin = chain.request()
                 val request =
                 origin.newBuilder()
-                    .header("Authorization", "Bearer " + token)
+                    .header("Authorization", "Bearer $token")
                     .method(origin.method, origin.body)
                     .build()
                 Log.e("TAG", "getApiService: ${request.headers}")

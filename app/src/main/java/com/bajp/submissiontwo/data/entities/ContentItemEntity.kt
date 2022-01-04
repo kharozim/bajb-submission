@@ -1,7 +1,5 @@
 package com.bajp.submissiontwo.data.entities
 
-import com.google.gson.annotations.SerializedName
-
 data class ContentItemEntity(
     val id: Int,
     val name: String,

@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class HomeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
-    internal lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
             showLoading(true)
             homeViewModel.getListMovie().observe(this, { data ->
                 if (data != null) {
-                    if (data.results.isNotEmpty() == true) {
+                    if (data.results.isNotEmpty()) {
                         setupViewPagerSlider(data.results, isMovie)
                     }
                 }
@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity() {
             showLoading(true)
             homeViewModel.getListTV().observe(this, { data ->
                 if (data != null) {
-                    if (data.results.isNotEmpty() == true) {
+                    if (data.results.isNotEmpty()) {
                         setupViewPagerSlider(data.results, isMovie)
                     }
                 }
