@@ -15,7 +15,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bajp.submissiontwo.R
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ActivityHomeBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.ui.detail.DetailActivity

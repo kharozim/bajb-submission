@@ -1,9 +1,11 @@
-package com.bajp.submissiontwo.data.repository.remote
+package com.bajp.submissiontwo.data.source.remote
 
 import android.util.Log
-import com.bajp.submissiontwo.data.repository.remote.response.BaseResponse
-import com.bajp.submissiontwo.data.repository.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.repository.remote.response.TvShowResponse
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.bajp.submissiontwo.data.source.remote.response.BaseResponse
+import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
+import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 import com.bajp.submissiontwo.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,8 +24,9 @@ class RemoteResource private constructor(private val apiConfig: ApiConfig) {
         private const val TAG = "RemoteResource"
     }
 
-    fun getDataMovie(callback: CallbackListMovie) {
+    fun getDataMovie(callback: CallbackListMovie) : LiveData<ApiResponse<BaseResponse<List<MovieResponse>>>> {
         EspressoIdlingResource.increment()
+        val _response = MutableLiveData<ApiResponse<BaseResponse<List<MovieResponse>>>>()
         val client = apiConfig.getApiService().getMovie()
         client.enqueue(object : Callback<BaseResponse<List<MovieResponse>>> {
             override fun onResponse(
@@ -31,19 +34,24 @@ class RemoteResource private constructor(private val apiConfig: ApiConfig) {
                 response: Response<BaseResponse<List<MovieResponse>>>
             ) {
                 if (response.isSuccessful) {
-                    val listMovie = response.body()?.results ?: emptyList()
-                    callback.onAllMovieReceived(listMovie)
+                    val listMovie = response.body()!!
+                    val data = ApiResponse.success(listMovie)
+                    _response.postValue(data)
+//                    callback.onAllMovieReceived(listMovie)
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onEmpty: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<List<MovieResponse>>>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message}")
+                val data = ApiResponse.error(t.localizedMessage,)
+                _response.postValue(data)
             }
         })
 
         EspressoIdlingResource.decrement()
+
+
     }
 
     fun getDataTv(callback: CallBackListTvShow) {
@@ -80,8 +88,11 @@ class RemoteResource private constructor(private val apiConfig: ApiConfig) {
             ) {
                 if (response.isSuccessful) {
                     val movie = response.body() ?: MovieResponse()
-                    callback.onDetailMovieReceived(movie)
+                    val data = ApiResponse.success(movie)
+                    callback.onDetailMovieReceived(data)
                 } else {
+                    val data = ApiResponse.error(response.message(), response.body()?: MovieResponse())
+                    callback.onDetailMovieReceived(data)
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
@@ -118,18 +129,18 @@ class RemoteResource private constructor(private val apiConfig: ApiConfig) {
 
 
     interface CallbackListMovie {
-        fun onAllMovieReceived(data: List<MovieResponse>)
+        fun onAllMovieReceived(data: ApiResponse<List<MovieResponse>>)
     }
 
     interface CallBackListTvShow {
-        fun onAllTvShowReceived(data: List<TvShowResponse>)
+        fun onAllTvShowReceived(data: ApiResponse<List<TvShowResponse>>)
     }
 
     interface CallbackDetailMovie {
-        fun onDetailMovieReceived(data: MovieResponse)
+        fun onDetailMovieReceived(data: ApiResponse<MovieResponse>)
     }
 
     interface CallbackDetailTvShow {
-        fun onDetailTvReceived(data: TvShowResponse)
+        fun onDetailTvReceived(data: ApiResponse<TvShowResponse>)
     }
 }

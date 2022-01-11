@@ -1,7 +1,7 @@
 package com.bajp.submissiontwo.utils
 
-import com.bajp.submissiontwo.data.entities.ContentEntity
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 
 object DataEntityUtil {
 

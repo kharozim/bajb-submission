@@ -1,7 +1,7 @@
 package com.bajp.submissiontwo.utils
 
-import com.bajp.submissiontwo.data.repository.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.repository.remote.response.TvShowResponse
+import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
+import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 
 object DataResponseUtil {
 

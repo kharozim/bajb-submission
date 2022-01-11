@@ -1,7 +1,7 @@
 package com.bajp.submissiontwo.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.bajp.submissiontwo.data.repository.remote.RemoteResource
+import com.bajp.submissiontwo.data.source.remote.RemoteResource
 import com.bajp.submissiontwo.utils.DataResponseUtil
 import com.bajp.submissiontwo.utils.LiveDataTestUtil
 import com.nhaarman.mockitokotlin2.any

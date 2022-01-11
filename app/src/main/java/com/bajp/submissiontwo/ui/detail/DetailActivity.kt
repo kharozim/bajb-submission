@@ -11,7 +11,7 @@ import androidx.core.app.ShareCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissiontwo.R
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ActivityDetailBinding
 import com.bajp.submissiontwo.databinding.ItemDialogDetailBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory

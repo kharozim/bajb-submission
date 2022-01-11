@@ -1,7 +1,7 @@
 package com.bajp.submissiontwo.ui.home
 
 import androidx.recyclerview.widget.DiffUtil
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 
 class HomeDiffUtil(
     private val oldItems: List<ContentItemEntity>,

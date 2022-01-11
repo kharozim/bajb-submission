@@ -2,8 +2,8 @@ package com.bajp.submissiontwo.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
-import com.bajp.submissiontwo.data.repository.IRepository
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.IRepository
 
 class DetailViewModel(private val repository: IRepository) : ViewModel() {
 

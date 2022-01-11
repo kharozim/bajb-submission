@@ -1,8 +1,8 @@
-package com.bajp.submissiontwo.data.repository
+package com.bajp.submissiontwo.data.source
 
 import androidx.lifecycle.LiveData
-import com.bajp.submissiontwo.data.entities.ContentEntity
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 
 interface IRepository {
     fun getDataMovie(): LiveData<ContentEntity>

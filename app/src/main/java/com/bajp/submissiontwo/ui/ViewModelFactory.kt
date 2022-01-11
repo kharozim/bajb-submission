@@ -2,7 +2,7 @@ package com.bajp.submissiontwo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bajp.submissiontwo.data.repository.IRepository
+import com.bajp.submissiontwo.data.source.IRepository
 import com.bajp.submissiontwo.di.Injection
 import com.bajp.submissiontwo.ui.detail.DetailViewModel
 import com.bajp.submissiontwo.ui.home.HomeViewModel

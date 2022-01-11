@@ -3,9 +3,9 @@ package com.bajp.submissiontwo.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
-import com.bajp.submissiontwo.data.repository.IRepository
-import com.bajp.submissiontwo.data.repository.Repository
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.IRepository
+import com.bajp.submissiontwo.data.source.Repository
 import com.bajp.submissiontwo.utils.DataEntityUtil
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals

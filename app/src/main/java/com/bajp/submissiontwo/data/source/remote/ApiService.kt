@@ -1,8 +1,8 @@
-package com.bajp.submissiontwo.data.repository.remote
+package com.bajp.submissiontwo.data.source.remote
 
-import com.bajp.submissiontwo.data.repository.remote.response.BaseResponse
-import com.bajp.submissiontwo.data.repository.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.repository.remote.response.TvShowResponse
+import com.bajp.submissiontwo.data.source.remote.response.BaseResponse
+import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
+import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

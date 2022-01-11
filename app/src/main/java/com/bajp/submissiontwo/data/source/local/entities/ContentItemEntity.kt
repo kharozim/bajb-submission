@@ -1,4 +1,4 @@
-package com.bajp.submissiontwo.data.entities
+package com.bajp.submissiontwo.data.source.local.entities
 
 data class ContentItemEntity(
     val id: Int,

@@ -1,4 +1,4 @@
-package com.bajp.submissiontwo.data.repository.remote
+package com.bajp.submissiontwo.data.source.remote
 
 import android.util.Log
 import okhttp3.OkHttpClient

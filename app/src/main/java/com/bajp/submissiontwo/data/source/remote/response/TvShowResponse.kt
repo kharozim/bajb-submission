@@ -1,12 +1,12 @@
-package com.bajp.submissiontwo.data.repository.remote.response
+package com.bajp.submissiontwo.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponse(
+data class TvShowResponse(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:SerializedName("title")
+    @field:SerializedName("name")
     val name: String? = null,
 
     @field:SerializedName("overview")

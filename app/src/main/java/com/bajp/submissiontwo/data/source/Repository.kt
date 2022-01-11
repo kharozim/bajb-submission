@@ -1,13 +1,12 @@
-package com.bajp.submissiontwo.data.repository
+package com.bajp.submissiontwo.data.source
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bajp.submissiontwo.data.entities.ContentEntity
-import com.bajp.submissiontwo.data.entities.ContentItemEntity
-import com.bajp.submissiontwo.data.repository.remote.RemoteResource
-import com.bajp.submissiontwo.data.repository.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.repository.remote.response.TvShowResponse
+import com.bajp.submissiontwo.data.source.local.entities.ContentEntity
+import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
+import com.bajp.submissiontwo.data.source.remote.RemoteResource
+import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
+import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 
 class Repository private constructor(private val remoteDataSource: RemoteResource) : IRepository {
 
