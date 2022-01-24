@@ -2,7 +2,6 @@ package com.bajp.submissiontwo.data.source.remote
 
 import com.bajp.submissiontwo.data.source.remote.response.BaseResponse
 import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,7 +11,7 @@ interface ApiService {
     fun getMovie(): Call<BaseResponse<List<MovieResponse>>>
 
     @GET("tv/popular")
-    fun getTvShow(): Call<BaseResponse<List<TvShowResponse>>>
+    fun getTvShow(): Call<BaseResponse<List<MovieResponse>>>
 
     @GET("movie/{id}")
     fun getDetailMovie(
@@ -22,5 +21,5 @@ interface ApiService {
     @GET("tv/{id}")
     fun getDetailTvShow(
         @Path("id") id: Int
-    ): Call<TvShowResponse>
+    ): Call<MovieResponse>
 }

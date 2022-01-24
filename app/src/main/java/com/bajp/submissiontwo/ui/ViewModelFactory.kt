@@ -1,5 +1,6 @@
 package com.bajp.submissiontwo.ui
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissiontwo.data.source.IRepository
@@ -13,9 +14,9 @@ class ViewModelFactory private constructor(private val repo: IRepository) :
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
-        fun getInstance(): ViewModelFactory {
+        fun getInstance(context: Context): ViewModelFactory {
             return instance ?: synchronized(this) {
-                ViewModelFactory(Injection.provideRepository()).apply { instance = this }
+                ViewModelFactory(Injection.provideRepository(context)).apply { instance = this }
             }
         }
     }

@@ -3,7 +3,6 @@ package com.bajp.submissiontwo.ui.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.bajp.submissiontwo.data.source.local.entities.ContentEntity
 import com.bajp.submissiontwo.data.source.IRepository
 import com.bajp.submissiontwo.data.source.Repository
 import com.bajp.submissiontwo.utils.DataEntityUtil

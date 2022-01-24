@@ -16,6 +16,7 @@ import com.bajp.submissiontwo.databinding.ActivityDetailBinding
 import com.bajp.submissiontwo.databinding.ItemDialogDetailBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.utils.FormatUtil
+import com.bajp.submissiontwo.utils.showToast
 import com.bumptech.glide.Glide
 import java.util.*
 
@@ -31,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         setObserver()
@@ -39,7 +40,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        showLoading(true)
         if (isMovie) {
             viewModel.getDetailMovie(detailId).observe(this, { result ->
                 if (result != null) {
@@ -47,16 +47,15 @@ class DetailActivity : AppCompatActivity() {
                 } else {
                     showMessage(getString(R.string.data_not_found))
                 }
-                showLoading(false)
             })
         } else {
             viewModel.getDetailTv(detailId).observe(this, { result ->
                 if (result != null) {
                     setView(result)
+                    showToast("success")
                 } else {
                     showMessage(getString(R.string.data_not_found))
                 }
-                showLoading(false)
             })
         }
     }
@@ -69,6 +68,7 @@ class DetailActivity : AppCompatActivity() {
         contentItem = result
         val dateRelease = FormatUtil.formatDate(result.releaseDate)
         binding.run {
+            showToast(result.imagePoster)
             Glide.with(this@DetailActivity)
                 .load(result.imagePoster)
                 .placeholder(R.drawable.ic_clock)

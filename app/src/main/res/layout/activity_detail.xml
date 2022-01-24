@@ -88,6 +88,8 @@
             tools:text="@tools:sample/lorem/random" />
 
         <ProgressBar
+            android:visibility="gone"
+            tools:visibility="visible"
             android:id="@+id/progressDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

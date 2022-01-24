@@ -29,12 +29,12 @@ class RepositoryTest : TestCase() {
     @Test
     fun getListMovie() {
         doAnswer { invocation ->
-            (invocation.arguments[0] as RemoteResource.CallbackListMovie)
-                .onAllMovieReceived(movieResponse)
+            (invocation.arguments[0] as RemoteResource.CallbackListContent)
+                .onAllContentReceived(movieResponse)
             null
-        }.`when`(remote).getDataMovie(any())
+        }.`when`(remote).getMovies(any())
         val contentEntity = LiveDataTestUtil.getValue(fakeRepo.getDataMovie())
-        verify(remote).getDataMovie(any())
+        verify(remote).getMovies(any())
         assertNotNull(contentEntity)
         assertEquals(movieResponse.size.toLong(), contentEntity.results.size.toLong())
     }
@@ -57,8 +57,8 @@ class RepositoryTest : TestCase() {
         val id = movieResponse[position].id ?: 0
         val dummyDetailMovie = movieResponse[position]
         doAnswer { invoc ->
-            (invoc.arguments[1] as RemoteResource.CallbackDetailMovie)
-                .onDetailMovieReceived(dummyDetailMovie)
+            (invoc.arguments[1] as RemoteResource.CallbackDetailContent)
+                .onDetailContentReceived(dummyDetailMovie)
         }.`when`(remote).getDetailMovie(eq(id), any())
         val detailMovie = LiveDataTestUtil.getValue(fakeRepo.getDetailMovie(id))
         verify(remote).getDetailMovie(eq(id), any())
@@ -72,7 +72,7 @@ class RepositoryTest : TestCase() {
         val id = tvResponse[position].id ?: 0
         val dummyDetailTvShow = tvResponse[position]
         doAnswer { onMock ->
-            (onMock.arguments[1] as RemoteResource.CallbackDetailTvShow)
+            (onMock.arguments[1] as RemoteResource.CallbackDetailContent)
                 .onDetailTvReceived(dummyDetailTvShow)
         }.`when`(remote).getDetailTv(eq(id), any())
         val detailTvShow = LiveDataTestUtil.getValue(fakeRepo.getDetailTv(id))

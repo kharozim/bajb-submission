@@ -6,7 +6,7 @@ data class MovieResponse(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:SerializedName("title")
+    @field:SerializedName("title", alternate = ["name"])
     val name: String? = null,
 
     @field:SerializedName("overview")

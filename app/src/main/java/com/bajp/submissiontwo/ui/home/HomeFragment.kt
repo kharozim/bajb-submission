@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.FragmentHomeBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.ui.detail.DetailActivity
+import com.bajp.submissiontwo.vo.Status
 
 class HomeFragment : Fragment() {
 
@@ -36,7 +38,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(requireContext())
         sharedViewModel =
             ViewModelProvider(requireActivity(), factory = factory)[HomeViewModel::class.java]
         if (isMovie) {
@@ -48,27 +50,43 @@ class HomeFragment : Fragment() {
 
     private fun setupMovie() {
         showLoading(true)
-        sharedViewModel.getListMovie().observe(viewLifecycleOwner, { data ->
-            data?.results?.let { showData(it, true) }
-            showLoading(false)
+        sharedViewModel.getListMovie().observe(viewLifecycleOwner, {
+
+            when (it.status) {
+                Status.LOADING -> {
+                    showLoading(true)
+                }
+                Status.ERROR -> {
+                    showLoading(false)
+                }
+                Status.SUCCESS -> {
+                    it.data?.let { data -> showData(data, true) }
+                    showLoading(false)
+                }
+            }
+
         })
     }
 
     private fun setupTv() {
         showLoading(true)
-        sharedViewModel.getListTV().observe(viewLifecycleOwner, { data ->
-            data?.results?.let { showData(it, false) }
-            showLoading(false)
+        sharedViewModel.getListTV().observe(viewLifecycleOwner, {
+            when (it.status) {
+                Status.LOADING -> {
+                    showLoading(true)
+                }
+                Status.ERROR -> {
+                    showLoading(false)
+                }
+                Status.SUCCESS -> {
+                    it.data?.let {data-> showData(data, false) }
+                    showLoading(false)
+                }
+            }
         })
-
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressFragment.isVisible = isLoading
-        binding.rvContent.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
-    }
-
-    private fun showData(results: List<ContentItemEntity>, isMovie: Boolean) {
+    private fun showData(data: PagedList<ContentItemEntity>, isMovie: Boolean) {
         val adapter = HomeContentAdapter()
         adapter.clickItem(object : ItemClick {
             override fun onItemClick(data: Any?, position: Int) {
@@ -79,9 +97,16 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
         })
-        adapter.setItems(results)
+        adapter.submitList(data)
+        adapter.notifyDataSetChanged()
         binding.rvContent.adapter = adapter
     }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressFragment.isVisible = isLoading
+        binding.rvContent.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
+    }
+
 
     companion object {
         const val IS_MOVIE = "IS_MOVIE"

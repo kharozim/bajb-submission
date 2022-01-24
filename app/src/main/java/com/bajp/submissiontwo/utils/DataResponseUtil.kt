@@ -1,7 +1,6 @@
 package com.bajp.submissiontwo.utils
 
 import com.bajp.submissiontwo.data.source.remote.response.MovieResponse
-import com.bajp.submissiontwo.data.source.remote.response.TvShowResponse
 
 object DataResponseUtil {
 
@@ -195,9 +194,9 @@ object DataResponseUtil {
 
     }
 
-    fun generateDataTV(): List<TvShowResponse> {
+    fun generateDataTV(): List<MovieResponse> {
         return listOf(
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
                 releaseDate = "2021-11-24",
                 id = 88329,
@@ -207,7 +206,7 @@ object DataResponseUtil {
                 rating = 8.5,
                 ratingCount = 851
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/xAKMj134XHQVNHLC6rWsccLMenG.jpg",
                 releaseDate = "2021-10-12",
                 id = 90462,
@@ -217,7 +216,7 @@ object DataResponseUtil {
                 rating = 8.0,
                 ratingCount = 2676
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/1P3QtW1IkivqDrKbbwuR0zCYIf8.jpg",
                 releaseDate = "2021-11-18",
                 id = 71914,
@@ -227,7 +226,7 @@ object DataResponseUtil {
                 rating = 8.1,
                 ratingCount = 591
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/pkOSjcllDSs4WP9i8DGkw9VgF5Q.jpg",
                 releaseDate = "2015-07-06",
                 id = 63452,
@@ -237,7 +236,7 @@ object DataResponseUtil {
                 rating = 8.0,
                 ratingCount = 7
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/yfXSvNfF43S0cxpxCEKaU17yZ64.jpg",
                 releaseDate = "1983-09-19",
                 id = 2778,
@@ -247,7 +246,7 @@ object DataResponseUtil {
                 rating = 7.1,
                 ratingCount = 36
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/wlvnysn2hHctqP5JUPiUE2OsHA.jpg",
                 releaseDate = "2017-12-01",
                 id = 96502,
@@ -258,7 +257,7 @@ object DataResponseUtil {
                 rating = 0.0,
                 ratingCount = 0
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/vjcuLy14kxgxCaBToAudZWrGQQh.jpg",
                 releaseDate = "2021-01-18",
                 id = 117031,
@@ -268,7 +267,7 @@ object DataResponseUtil {
                 rating = 6.8,
                 ratingCount = 6
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/8lBlBItnehgOAwFt0ezxlXuWeIO.jpg",
                 releaseDate = "2021-11-08",
                 id = 132375,
@@ -279,7 +278,7 @@ object DataResponseUtil {
                 rating = 10.0,
                 ratingCount = 1
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/2E6HJCzNB0K6wQV6gXGd9VSZiXa.jpg",
                 releaseDate = "2021-12-01",
                 id = 136249,
@@ -289,7 +288,7 @@ object DataResponseUtil {
                 rating = 9.5,
                 ratingCount = 2
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/eD2U2RwxQosUDwvu19n46KvJEf9.jpg",
                 releaseDate = "2021-09-13",
                 id = 124549,
@@ -299,7 +298,7 @@ object DataResponseUtil {
                 rating = 5.0,
                 ratingCount = 2
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/75XgXxvZ7bYg6sRIBQKDdBlyTFY.jpg",
                 releaseDate = "2021-08-23",
                 id = 133372,
@@ -309,7 +308,7 @@ object DataResponseUtil {
                 rating = 2.3,
                 ratingCount = 6
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/h57VktoyPvVJsKx0s4EVewwAqDR.jpg",
                 releaseDate = "2021-12-01",
                 id = 136449,
@@ -319,7 +318,7 @@ object DataResponseUtil {
                 rating = 10.0,
                 ratingCount = 2
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/3NxyVxfL5zM7k4E36bSJEjFLqCE.jpg",
                 releaseDate = "2021-10-17",
                 id = 136665,
@@ -329,7 +328,7 @@ object DataResponseUtil {
                 rating = 10.0,
                 ratingCount = 1
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/9PEToOQQIjhvA88dMAAIlEGnFVa.jpg",
                 releaseDate = "2021-12-01",
                 id = 139286,
@@ -339,7 +338,7 @@ object DataResponseUtil {
                 rating = 0.0,
                 ratingCount = 0
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/4TqrmfFDGaPeItQUEPTJoovlo7Y.jpg",
                 releaseDate = "2021-11-07",
                 id = 139282,
@@ -349,7 +348,7 @@ object DataResponseUtil {
                 rating = 1.0,
                 ratingCount = 1
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/3NxyVxfL5zM7k4E36bSJEjFLqCE.jpg",
                 releaseDate = "2021-12-01",
                 id = 138890,
@@ -359,7 +358,7 @@ object DataResponseUtil {
                 rating = 0.0,
                 ratingCount = 0
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
                 releaseDate = "2017-05-02",
                 id = 71446,
@@ -369,7 +368,7 @@ object DataResponseUtil {
                 rating = 8.3,
                 ratingCount = 15593
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/41yaWnIT8AjIHiULHtTbKNzZTjc.jpg",
                 releaseDate = "2014-10-07",
                 id = 60735,
@@ -379,7 +378,7 @@ object DataResponseUtil {
                 rating = 7.8,
                 ratingCount = 8944
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/6W8zEF5jE9ErdhzatZBVI7fkpsP.jpg",
                 releaseDate = "2021-11-28",
                 id = 133723,
@@ -389,7 +388,7 @@ object DataResponseUtil {
                 rating = 8.3,
                 ratingCount = 56
             ),
-            TvShowResponse(
+            MovieResponse(
                 imageSlider = "/pCeDvEx7Fg5Lk5ufc6tILx13Lk6.jpg",
                 releaseDate = "2018-10-01",
                 id = 82728,

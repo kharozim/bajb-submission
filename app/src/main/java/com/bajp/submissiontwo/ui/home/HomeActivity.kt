@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ActivityHomeBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.ui.detail.DetailActivity
+import com.bajp.submissiontwo.vo.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.delay
@@ -32,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         setupMainContent()
     }
@@ -78,27 +80,45 @@ class HomeActivity : AppCompatActivity() {
     private fun setupSlider(isMovie: Boolean) {
         if (isMovie) {
             Log.e("TAG", "setupTv: movi")
-            showLoading(true)
-            homeViewModel.getListMovie().observe(this, { data ->
-                if (data != null) {
-                    if (data.results.isNotEmpty()) {
-                        setupViewPagerSlider(data.results, isMovie)
+            homeViewModel.getListMovie().observe(this, {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showLoading(true)
+                    }
+                    Status.ERROR -> {
+                        showLoading(false)
+                        showToast("error")
+                    }
+                    Status.SUCCESS -> {
+                        it.data?.let {data-> setupViewPagerSlider(data, isMovie) }
+                        showLoading(false)
                     }
                 }
-                showLoading(false)
+
             })
         } else {
             Log.e("TAG", "setupTv: tv")
-            showLoading(true)
-            homeViewModel.getListTV().observe(this, { data ->
-                if (data != null) {
-                    if (data.results.isNotEmpty()) {
-                        setupViewPagerSlider(data.results, isMovie)
+            homeViewModel.getListTV().observe(this, {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showLoading(true)
+                    }
+                    Status.ERROR -> {
+                        showLoading(false)
+                        showToast("error")
+
+                    }
+                    Status.SUCCESS -> {
+                        it.data?.let {data-> setupViewPagerSlider(data, isMovie) }
+                        showLoading(false)
                     }
                 }
-                showLoading(false)
             })
         }
+    }
+
+    private fun showToast(message : String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading(isLoading: Boolean) {

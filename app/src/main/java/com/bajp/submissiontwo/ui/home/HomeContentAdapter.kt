@@ -2,27 +2,26 @@ package com.bajp.submissiontwo.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ItemsHomeContentBinding
 import com.bumptech.glide.Glide
 
-class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>() {
+class HomeContentAdapter :
+    PagedListAdapter<ContentItemEntity, HomeContentAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     private var onItemClick: ItemClick? = null
     fun clickItem(listener: ItemClick) {
         onItemClick = listener
     }
 
-    private val items = ArrayList<ContentItemEntity>()
-    fun setItems(newItems: List<ContentItemEntity>) {
-        val diffCallback = HomeDiffUtil(items, newItems)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        items.clear()
-        items.addAll(newItems)
-        diffResult.dispatchUpdatesTo(this)
-    }
+//    private val items = ArrayList<ContentItemEntity>()
+//    fun setItems(newItems: List<ContentItemEntity>) {
+//        items.clear()
+//        items.addAll(newItems)
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
@@ -35,11 +34,9 @@ class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val item = items[position]
-        holder.bindData(item, position)
+        val item = getItem(position)
+        if (item != null) holder.bindData(item, position)
     }
-
-    override fun getItemCount(): Int = items.size
 
     inner class MyViewHolder(private val binding: ItemsHomeContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -50,6 +47,25 @@ class HomeContentAdapter : RecyclerView.Adapter<HomeContentAdapter.MyViewHolder>
                     onItemClick?.onItemClick(item, position)
                 }
             }
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ContentItemEntity>() {
+            override fun areItemsTheSame(
+                oldItem: ContentItemEntity,
+                newItem: ContentItemEntity
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(
+                oldItem: ContentItemEntity,
+                newItem: ContentItemEntity
+            ): Boolean {
+                return oldItem == newItem
+            }
+
         }
     }
 }
