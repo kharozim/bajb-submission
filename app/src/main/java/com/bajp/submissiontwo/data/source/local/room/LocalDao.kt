@@ -22,9 +22,6 @@ interface LocalDao {
     @Query("SELECT * FROM content_item_entities WHERE is_movie=0 AND id=:id")
     fun getDetailTv(id: Int): LiveData<ContentItemEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDetail(item: ContentItemEntity)
-
     @Update
     fun setFav(movie: ContentItemEntity)
 

@@ -29,10 +29,6 @@ class LocalDataSource private constructor(private val dao: LocalDao) {
         dao.insertMovies(items)
     }
 
-    fun insertDetail(item: ContentItemEntity) {
-        dao.insertDetail(item)
-    }
-
     fun setFav(item: ContentItemEntity) {
         item.isFavorite = !item.isFavorite
         dao.setFav(item)

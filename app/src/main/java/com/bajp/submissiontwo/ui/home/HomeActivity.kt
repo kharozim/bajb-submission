@@ -23,6 +23,7 @@ import com.bajp.submissiontwo.ui.detail.DetailActivity
 import com.bajp.submissiontwo.vo.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -79,7 +80,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupSlider(isMovie: Boolean) {
         if (isMovie) {
-            Log.e("TAG", "setupTv: movi")
             homeViewModel.getListMovie().observe(this, {
                 when (it.status) {
                     Status.LOADING -> {
@@ -92,6 +92,7 @@ class HomeActivity : AppCompatActivity() {
                     Status.SUCCESS -> {
                         it.data?.let {data-> setupViewPagerSlider(data, isMovie) }
                         showLoading(false)
+                        Log.e("TAG", "setupTv: movi \n" + Gson().toJson(it.data))
                     }
                 }
 

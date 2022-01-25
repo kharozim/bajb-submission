@@ -33,6 +33,7 @@ data class ContentItemEntity(
     @ColumnInfo(name = "rating_count")
     var ratingCount: Int,
 
+
     @ColumnInfo(name = "release_date")
     var releaseDate: String,
 
