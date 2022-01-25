@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ItemsHomeContentBinding
+import com.bajp.submissiontwo.utils.IMAGE_URL
 import com.bumptech.glide.Glide
 
 class HomeContentAdapter :
@@ -16,12 +17,6 @@ class HomeContentAdapter :
     fun clickItem(listener: ItemClick) {
         onItemClick = listener
     }
-
-//    private val items = ArrayList<ContentItemEntity>()
-//    fun setItems(newItems: List<ContentItemEntity>) {
-//        items.clear()
-//        items.addAll(newItems)
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
@@ -42,7 +37,7 @@ class HomeContentAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ContentItemEntity, position: Int) {
             binding.run {
-                Glide.with(root.context).load(item.imagePoster).into(ivImage)
+                Glide.with(root.context).load(IMAGE_URL+item.imagePoster).into(ivImage)
                 root.setOnClickListener {
                     onItemClick?.onItemClick(item, position)
                 }

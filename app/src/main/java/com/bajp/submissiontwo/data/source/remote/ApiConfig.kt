@@ -1,6 +1,7 @@
 package com.bajp.submissiontwo.data.source.remote
 
 import android.util.Log
+import com.bajp.submissiontwo.utils.BASE_URL_API
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,8 +11,6 @@ object ApiConfig {
 
     private const val token =
         "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMjY1OWZjZmE3NDNlN2I5ZDExYTY4MDA1Njc1ZDI4NiIsInN1YiI6IjViN2QwY2MyMGUwYTI2M2JjZDAwOGVhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7Jjpjp3o3D8CyIrpN7I9RpPCLFncwF5u-m94UUlxY8A"
-    const val POSTER_SIZE_W185 = "w185"
-    const val POSTER_SIZE_W780 = "w780"
 
     fun getApiService(): ApiService {
         val logInterceptor =

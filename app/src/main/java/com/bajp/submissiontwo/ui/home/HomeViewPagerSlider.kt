@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ItemsSliderBinding
+import com.bajp.submissiontwo.utils.IMAGE_URL
 import com.bumptech.glide.Glide
 
 class HomeViewPagerSlider(
@@ -42,7 +43,7 @@ class HomeViewPagerSlider(
     inner class MyViewHolder(val binding: ItemsSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ContentItemEntity, position: Int) {
-            Glide.with(binding.root.context).load(item.imageSlider).into(binding.ivSlider)
+            Glide.with(binding.root.context).load(IMAGE_URL+item.imageSlider).into(binding.ivSlider)
             binding.tvTitle.text = item.name
             binding.root.setOnClickListener {
                 itemClick?.onItemClick(item, position)
