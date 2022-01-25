@@ -30,8 +30,6 @@ class Repository private constructor(
             instance ?: synchronized(this) {
                 Repository(remoteData, localData, appExecutors).apply { instance = this }
             }
-
-        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
     }
 
     override fun getDataMovie(): LiveData<Resource<PagedList<ContentItemEntity>>> {
@@ -64,8 +62,8 @@ class Repository private constructor(
                             it.id ?: 0,
                             it.name ?: "",
                             it.description ?: "",
-                            it.imageSlider ?: "",
                             it.imagePoster ?: "",
+                            it.imageSlider ?: "",
                             it.rating ?: 0.0,
                             it.ratingCount ?: 0,
                             it.releaseDate ?: "",
@@ -109,8 +107,8 @@ class Repository private constructor(
                             it.id ?: 0,
                             it.name ?: "",
                             it.description ?: "",
-                            it.imageSlider ?: "",
                             it.imagePoster ?: "",
+                            it.imageSlider ?: "",
                             it.rating ?: 0.0,
                             it.ratingCount ?: 0,
                             it.releaseDate ?: "",
@@ -136,5 +134,8 @@ class Repository private constructor(
     override fun setFavorite(item: ContentItemEntity) {
        appExecutor.diskIO().execute { localDataSource.setFav(item) }
     }
+
+    override fun getFavorite(): LiveData<List<ContentItemEntity>> =
+        localDataSource.getFavorite()
 
 }

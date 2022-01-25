@@ -25,8 +25,8 @@ interface LocalDao {
     @Update
     fun setFav(movie: ContentItemEntity)
 
-//    @Query("SELECT * FROM content_item_entities WHERE is_movie=1 AND is_Favorite=1")
-//    fun getFavMovie(movie: ContentItemEntity)
+    @Query("SELECT * FROM content_item_entities WHERE is_Favorite=1 ORDER BY is_movie")
+    fun getFavorite() : LiveData<List<ContentItemEntity>>
 //
 //    @Query("SELECT * FROM content_item_entities WHERE is_movie=0 AND is_Favorite=1")
 //    fun getFavTv(movie: ContentItemEntity)

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissiontwo.data.source.IRepository
 import com.bajp.submissiontwo.di.Injection
 import com.bajp.submissiontwo.ui.detail.DetailViewModel
+import com.bajp.submissiontwo.ui.favorite.FavoriteActivity
+import com.bajp.submissiontwo.ui.favorite.FavoriteViewModel
 import com.bajp.submissiontwo.ui.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val repo: IRepository) :
@@ -28,6 +30,9 @@ class ViewModelFactory private constructor(private val repo: IRepository) :
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(repo) as T
+            }
+            modelClass.isAssignableFrom(FavoriteViewModel::class.java) ->{
+                FavoriteViewModel(repo) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

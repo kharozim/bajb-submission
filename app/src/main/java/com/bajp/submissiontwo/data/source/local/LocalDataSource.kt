@@ -33,4 +33,6 @@ class LocalDataSource private constructor(private val dao: LocalDao) {
         item.isFavorite = !item.isFavorite
         dao.setFav(item)
     }
+
+    fun getFavorite() : LiveData<List<ContentItemEntity>> = dao.getFavorite()
 }

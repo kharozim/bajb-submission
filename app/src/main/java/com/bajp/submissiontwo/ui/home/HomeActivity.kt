@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,12 +23,14 @@ import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
 import com.bajp.submissiontwo.databinding.ActivityHomeBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.ui.detail.DetailActivity
+import com.bajp.submissiontwo.ui.favorite.FavoriteActivity
 import com.bajp.submissiontwo.vo.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.zip.Inflater
 
 class HomeActivity : AppCompatActivity() {
 
@@ -90,9 +95,8 @@ class HomeActivity : AppCompatActivity() {
                         showToast("error")
                     }
                     Status.SUCCESS -> {
-                        it.data?.let {data-> setupViewPagerSlider(data, isMovie) }
+                        it.data?.let { data -> setupViewPagerSlider(data, isMovie) }
                         showLoading(false)
-                        Log.e("TAG", "setupTv: movi \n" + Gson().toJson(it.data))
                     }
                 }
 
@@ -110,7 +114,7 @@ class HomeActivity : AppCompatActivity() {
 
                     }
                     Status.SUCCESS -> {
-                        it.data?.let {data-> setupViewPagerSlider(data, isMovie) }
+                        it.data?.let { data -> setupViewPagerSlider(data, isMovie) }
                         showLoading(false)
                     }
                 }
@@ -118,7 +122,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToast(message : String){
+    private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
@@ -176,6 +180,22 @@ class HomeActivity : AppCompatActivity() {
                     viewPagerSlider.currentItem = -1
                 }
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.favorite, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.ivMenuFavorite) {
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
         }
     }
 

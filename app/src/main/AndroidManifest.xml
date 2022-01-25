@@ -12,14 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubmissionOne">
         <activity
-            android:name="com.bajp.submissiontwo.ui.detail.DetailActivity"
+            android:name=".ui.favorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detail.DetailActivity"
             android:exported="false"
             android:label="Detail" />
         <activity
-            android:theme="@style/FirstScreenTheme"
-            android:name="com.bajp.submissiontwo.ui.FirstScreenActivity"
-            android:exported="true">
-
+            android:name=".ui.FirstScreenActivity"
+            android:exported="true"
+            android:theme="@style/FirstScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bajp.submissiontwo.ui.home.HomeActivity"
+            android:name=".ui.home.HomeActivity"
             android:exported="true"
             android:label="Home" />
     </application>

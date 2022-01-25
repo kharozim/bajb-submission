@@ -24,6 +24,28 @@
             app:shapeAppearanceOverlay="@style/rounded12"
             tools:src="@tools:sample/avatars" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/black_transparent"
+            app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+            app:layout_constraintEnd_toEndOf="@id/ivPoster"
+            app:layout_constraintStart_toStartOf="@id/ivPoster" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btnFav"
+            app:shapeAppearanceOverlay="@style/rounded18"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:scaleType="fitCenter"
+            android:layout_margin="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_fav_outline"
+            app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+            app:layout_constraintEnd_toEndOf="@id/ivPoster" />
+
         <LinearLayout
             android:id="@+id/layoutTop"
             android:layout_width="match_parent"
@@ -88,14 +110,14 @@
             tools:text="@tools:sample/lorem/random" />
 
         <ProgressBar
-            android:visibility="gone"
-            tools:visibility="visible"
             android:id="@+id/progressDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

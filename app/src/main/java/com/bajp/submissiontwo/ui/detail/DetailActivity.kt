@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissiontwo.R
 import com.bajp.submissiontwo.data.source.local.entities.ContentItemEntity
@@ -16,6 +14,7 @@ import com.bajp.submissiontwo.databinding.ActivityDetailBinding
 import com.bajp.submissiontwo.databinding.ItemDialogDetailBinding
 import com.bajp.submissiontwo.ui.ViewModelFactory
 import com.bajp.submissiontwo.utils.FormatUtil
+import com.bajp.submissiontwo.utils.IMAGE_URL
 import com.bajp.submissiontwo.utils.showToast
 import com.bumptech.glide.Glide
 import java.util.*
@@ -45,32 +44,27 @@ class DetailActivity : AppCompatActivity() {
                 if (result != null) {
                     setView(result)
                 } else {
-                    showMessage(getString(R.string.data_not_found))
+                    showToast(getString(R.string.data_not_found))
                 }
             })
         } else {
             viewModel.getDetailTv(detailId).observe(this, { result ->
                 if (result != null) {
                     setView(result)
-                    showToast("success")
                 } else {
-                    showMessage(getString(R.string.data_not_found))
+                    showToast(getString(R.string.data_not_found))
                 }
             })
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressDetail.isVisible = isLoading
-    }
-
     private fun setView(result: ContentItemEntity) {
         contentItem = result
         val dateRelease = FormatUtil.formatDate(result.releaseDate)
+        val imageFav = if (result.isFavorite) R.drawable.ic_fav_fill else R.drawable.ic_fav_outline
         binding.run {
-            showToast(result.imagePoster)
             Glide.with(this@DetailActivity)
-                .load(result.imagePoster)
+                .load(IMAGE_URL + result.imagePoster)
                 .placeholder(R.drawable.ic_clock)
                 .into(ivPoster)
             tvName.text = result.name
@@ -81,8 +75,14 @@ class DetailActivity : AppCompatActivity() {
                 result.ratingCount.toString()
             )
             tvDescription.text = result.description
+            btnFav.setImageResource(imageFav)
+
             ivPoster.setOnClickListener {
                 showDialogImage(result.imagePoster)
+            }
+            btnFav.setOnClickListener {
+                viewModel.setFav(result)
+                viewModel.getDetailMovie(detailId)
             }
         }
     }
@@ -90,7 +90,7 @@ class DetailActivity : AppCompatActivity() {
     private fun showDialogImage(imagePoster: String) {
         val dialog = Dialog(this, R.style.Base_Theme_AppCompat_Dialog_MinWidth)
         val dialogBinding = ItemDialogDetailBinding.inflate(layoutInflater)
-        Glide.with(this).load(imagePoster).placeholder(R.mipmap.ic_launcher)
+        Glide.with(this).load(IMAGE_URL + imagePoster).placeholder(R.mipmap.ic_launcher)
             .into(dialogBinding.ivDialogPoster)
         dialog.setContentView(dialogBinding.root)
         dialog.show()
@@ -122,9 +122,6 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 
     companion object {
         const val EXTRA_DETAIL_IS_MOVIE = "EXTRA_DETAIL_IS_MOVIE"

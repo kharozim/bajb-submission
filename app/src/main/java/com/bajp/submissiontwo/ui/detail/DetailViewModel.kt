@@ -14,4 +14,8 @@ class DetailViewModel(private val repository: IRepository) : ViewModel() {
     fun getDetailTv(id: Int): LiveData<ContentItemEntity> {
         return repository.getDetailTv(id)
     }
+
+    fun setFav(item: ContentItemEntity) {
+        repository.setFavorite(item)
+    }
 }

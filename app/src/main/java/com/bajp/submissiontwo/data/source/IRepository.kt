@@ -11,4 +11,5 @@ interface IRepository {
     fun getDetailMovie(id: Int): LiveData<ContentItemEntity>
     fun getDetailTv(id: Int): LiveData<ContentItemEntity>
     fun setFavorite(item: ContentItemEntity)
+    fun getFavorite() : LiveData<List<ContentItemEntity>>
 }
