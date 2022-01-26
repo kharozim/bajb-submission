@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bajp.submissionthree.R
+import com.bajp.submissionthree.ui.home.content.HomeContentAdapter
 import com.bajp.submissionthree.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before

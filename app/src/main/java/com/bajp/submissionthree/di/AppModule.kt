@@ -7,7 +7,7 @@ import com.bajp.submissionthree.data.source.local.room.LocalDao
 import com.bajp.submissionthree.data.source.local.room.LocalDatabase
 import com.bajp.submissionthree.data.source.remote.ApiService
 import com.bajp.submissionthree.data.source.remote.RemoteResource
-import com.bajp.submissionthree.ui.ViewModelFactory
+import com.bajp.submissionthree.utils.ViewModelFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

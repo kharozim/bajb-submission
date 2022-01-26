@@ -2,7 +2,6 @@ package com.bajp.submissionthree.di
 
 import android.app.Application
 import com.bajp.submissionthree.BaseApplication
-import com.project.lastsubmission.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

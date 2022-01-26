@@ -1,4 +1,4 @@
-package com.bajp.submissionthree.ui.home
+package com.bajp.submissionthree.ui.home.content
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
 import com.bajp.submissionthree.databinding.FragmentHomeBinding
-import com.bajp.submissionthree.ui.ViewModelFactory
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.ui.detail.DetailActivity
+import com.bajp.submissionthree.ui.home.HomeViewModel
+import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.vo.Status
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +24,10 @@ class HomeFragment : Fragment() {
 
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private var isMovie = false
+
+    @Inject
+    lateinit var factory : ViewModelFactory
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +38,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(IS_MOVIE, isMovie)
@@ -38,7 +46,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = ViewModelFactory.getInstance(requireContext())
         sharedViewModel =
             ViewModelProvider(requireActivity(), factory = factory)[HomeViewModel::class.java]
         if (isMovie) {

@@ -1,4 +1,4 @@
-package com.bajp.submissionthree.ui.home
+package com.bajp.submissionthree.ui.home.content
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
 import com.bajp.submissionthree.databinding.ItemsHomeContentBinding
+import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bumptech.glide.Glide
 

@@ -6,19 +6,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissionthree.R
 import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
 import com.bajp.submissionthree.databinding.ActivityFavoriteBinding
-import com.bajp.submissionthree.ui.ViewModelFactory
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.utils.showToast
+import javax.inject.Inject
 
 class FavoriteActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityFavoriteBinding.inflate(layoutInflater) }
     private lateinit var viewModel: FavoriteViewModel
-
+    @Inject
+    lateinit var factory : ViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
         setObserver()
     }

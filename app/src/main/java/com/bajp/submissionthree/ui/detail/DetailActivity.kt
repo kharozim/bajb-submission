@@ -12,12 +12,13 @@ import com.bajp.submissionthree.R
 import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
 import com.bajp.submissionthree.databinding.ActivityDetailBinding
 import com.bajp.submissionthree.databinding.ItemDialogDetailBinding
-import com.bajp.submissionthree.ui.ViewModelFactory
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.utils.FormatUtil
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bajp.submissionthree.utils.showToast
 import com.bumptech.glide.Glide
 import java.util.*
+import javax.inject.Inject
 
 class DetailActivity : AppCompatActivity() {
 
@@ -26,12 +27,13 @@ class DetailActivity : AppCompatActivity() {
     private val detailId by lazy { intent.getIntExtra(EXTRA_DETAIL_ID, 0) }
     private lateinit var viewModel: DetailViewModel
     private lateinit var contentItem: ContentItemEntity
+    @Inject
+    lateinit var factory : ViewModelFactory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         setObserver()

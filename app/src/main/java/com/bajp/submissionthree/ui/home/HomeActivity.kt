@@ -21,7 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bajp.submissionthree.R
 import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
 import com.bajp.submissionthree.databinding.ActivityHomeBinding
-import com.bajp.submissionthree.ui.ViewModelFactory
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.ui.detail.DetailActivity
 import com.bajp.submissionthree.ui.favorite.FavoriteActivity
 import com.bajp.submissionthree.vo.Status
@@ -29,16 +29,18 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     private lateinit var homeViewModel: HomeViewModel
+    @Inject
+    lateinit var factory : ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance(this)
         homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         setupMainContent()
     }
