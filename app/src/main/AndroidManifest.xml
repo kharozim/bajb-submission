@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bajp.submissiontwo">
+    package="com.bajp.submissionthree">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubmissionOne">
         <activity
-            android:name=".ui.favorite.FavoriteActivity"
+            android:name="com.bajp.submissionthree.ui.favorite.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name="com.bajp.submissionthree.ui.detail.DetailActivity"
             android:exported="false"
             android:label="Detail" />
         <activity
-            android:name=".ui.FirstScreenActivity"
+            android:name="com.bajp.submissionthree.ui.FirstScreenActivity"
             android:exported="true"
             android:theme="@style/FirstScreenTheme">
             <intent-filter>
@@ -29,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name="com.bajp.submissionthree.ui.home.HomeActivity"
             android:exported="true"
             android:label="Home" />
     </application>

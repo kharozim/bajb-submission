@@ -15,9 +15,9 @@ buildscript {
 
 ext {
     //dependencies version
-    appCompatVersion = '1.4.0'
+    appCompatVersion = '1.4.1'
     coreVersion = '1.7.0'
-    constraintLayoutVersion = '2.1.2'
+    constraintLayoutVersion = '2.1.3'
     junitVersion = '4.13.2'
     junitExtversion = '1.1.3'
     espressoVersion = '3.4.0'
@@ -31,12 +31,11 @@ ext {
     androidxNavigation = '2.3.5'
     androidxLifecycle = '2.4.0'
     androidxActivity = '1.4.0'
-    materialVersion = '1.4.0'
+    materialVersion = '1.5.0'
     recyclerViewVersion = '1.1.0'
     glideVersion = '4.12.0'
 
-    daggerVersion = '2.27'
-    pagingVersion = "2.1.2"
+    pagingVersion = "3.1.0"
     coroutineVersion = "1.5.2"
 
 }
