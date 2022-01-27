@@ -2,23 +2,24 @@ package com.bajp.submissionthree.ui.home.content
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.FragmentHomeBinding
 import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.ui.detail.DetailActivity
 import com.bajp.submissionthree.ui.home.HomeViewModel
 import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.vo.Status
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : DaggerFragment() {
 
     private lateinit var sharedViewModel: HomeViewModel
 
@@ -92,11 +93,11 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun showData(data: PagedList<ContentItemEntity>, isMovie: Boolean) {
+    private fun showData(data: PagedList<CatalogEntity>, isMovie: Boolean) {
         val adapter = HomeContentAdapter()
         adapter.clickItem(object : ItemClick {
             override fun onItemClick(data: Any?, position: Int) {
-                data as ContentItemEntity
+                data as CatalogEntity
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_DETAIL_IS_MOVIE, isMovie)
                 intent.putExtra(DetailActivity.EXTRA_DETAIL_ID, data.id)
@@ -104,6 +105,7 @@ class HomeFragment : Fragment() {
             }
         })
         adapter.submitList(data)
+        Log.d("TAG", "showData: ${adapter.itemCount}")
         adapter.notifyDataSetChanged()
         binding.rvContent.adapter = adapter
     }

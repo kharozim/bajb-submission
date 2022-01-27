@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ItemsSliderBinding
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bumptech.glide.Glide
 
 class HomeViewPagerSlider(
     private val context: Context,
-    private val items: List<ContentItemEntity>
+    private val items: List<CatalogEntity>
 ) : RecyclerView.Adapter<HomeViewPagerSlider.MyViewHolder>() {
 
     private var itemClick: ItemClick? = null
@@ -42,7 +42,7 @@ class HomeViewPagerSlider(
 
     inner class MyViewHolder(val binding: ItemsSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindData(item: ContentItemEntity, position: Int) {
+        fun bindData(item: CatalogEntity, position: Int) {
             Glide.with(binding.root.context).load(IMAGE_URL+item.imageSlider).into(binding.ivSlider)
             binding.tvTitle.text = item.name
             binding.root.setOnClickListener {

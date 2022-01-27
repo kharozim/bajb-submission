@@ -1,5 +1,6 @@
 package com.bajp.submissionthree
 
+import com.bajp.submissionthree.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 

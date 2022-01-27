@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.bajp.submissionthree.data.source.remote.vo.ApiResponse
 import com.bajp.submissionthree.data.source.remote.vo.StatusResponse
-import com.bajp.submissionthree.utils.AppExecutors
 import com.bajp.submissionthree.vo.Resource
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors
@@ -35,15 +34,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         }
     }
 
-    protected open fun onFetchFailed() {}
 
-    protected abstract fun loadFromDB(): LiveData<ResultType>
-
-    protected abstract fun shouldFetch(data: ResultType?): Boolean
-
-    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
-
-    protected abstract fun saveCallResult(data: RequestType)
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
 
@@ -61,7 +52,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                         response.body?.let { data ->
                             saveCallResult(data)
                         }
-                        Log.d("SCOP 1 : ", response.status.name)
+                        Log.d("SCOPKU Success : ", response.status.name)
 
                         withContext(Dispatchers.Main) {
                             result.addSource(loadFromDB()) { newData ->
@@ -70,7 +61,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                         }
                     }
                 StatusResponse.ERROR -> {
-                    Log.d("SCOP 2 : ", response.status.name)
+                    Log.d("SCOPKU Error : ", response.status.name)
                     result.addSource(dbSource) { newData ->
                         result.value = Resource.error(response.message, newData)
                     }
@@ -78,6 +69,15 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             }
         }
     }
+
+
+    protected abstract fun saveCallResult(data: RequestType)
+
+    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
+
+    protected abstract fun shouldFetch(data: ResultType?): Boolean
+
+    protected abstract fun loadFromDB(): LiveData<ResultType>
 
     fun asLiveData(): LiveData<Resource<ResultType>> = result
 }

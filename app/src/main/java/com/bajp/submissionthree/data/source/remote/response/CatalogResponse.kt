@@ -2,7 +2,7 @@ package com.bajp.submissionthree.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponse(
+data class CatalogResponse(
     @field:SerializedName("id")
     val id: Int? = null,
 
@@ -24,6 +24,6 @@ data class MovieResponse(
     @field:SerializedName("vote_count")
     val ratingCount: Int? = null,
 
-    @field:SerializedName("release_date")
+    @field:SerializedName("release_date", alternate = ["first_air_date"])
     val releaseDate: String? = null,
 )

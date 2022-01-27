@@ -4,24 +4,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ItemFavoriteBinding
 import com.bajp.submissionthree.databinding.ItemHeaderFavoriteBinding
 import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.utils.FormatUtil
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
 
 sealed class DataItemType {
     data class Header(val title: String) : DataItemType()
-    data class Content(val data: ContentItemEntity) : DataItemType()
+    data class Content(val data: CatalogEntity) : DataItemType()
 }
 
 class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = ArrayList<DataItemType>()
-    fun setData(data: List<ContentItemEntity>) {
+    fun setData(data: List<CatalogEntity>) {
         val dataMovie = data.filter { it.isMovie }
         val dataTv = data.filter { !it.isMovie }
         if (dataMovie.isNotEmpty()) {
@@ -36,7 +35,7 @@ class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    private fun doAddTv(dataTv: List<ContentItemEntity>) {
+    private fun doAddTv(dataTv: List<CatalogEntity>) {
         if (dataTv.isNotEmpty()) {
             items.add(DataItemType.Header("TV Show"))
             dataTv.forEach {

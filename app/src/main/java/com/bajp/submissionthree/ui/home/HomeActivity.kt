@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,30 +17,35 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bajp.submissionthree.R
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ActivityHomeBinding
-import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.ui.detail.DetailActivity
 import com.bajp.submissionthree.ui.favorite.FavoriteActivity
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.vo.Status
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : DaggerAppCompatActivity() {
 
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     private lateinit var homeViewModel: HomeViewModel
+
     @Inject
-    lateinit var factory : ViewModelFactory
+    lateinit var factory: ViewModelFactory
+
+    private var isMovie = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         setupMainContent()
+        setupSlider()
     }
 
     private fun setupMainContent() {
@@ -56,7 +59,6 @@ class HomeActivity : AppCompatActivity() {
             { tab, position ->
                 if (position == 0) {
                     tab.text = getString(R.string.movie)
-                    setupSlider(isMovie = true)
                 } else {
                     tab.text = getString(R.string.tv_show)
                 }
@@ -65,11 +67,8 @@ class HomeActivity : AppCompatActivity() {
 
             tabLayoutMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    if (tab?.position == 0) {
-                        setupSlider(isMovie = true)
-                    } else {
-                        setupSlider(isMovie = false)
-                    }
+                    isMovie = tab?.position == 0
+                    setupSlider()
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -82,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupSlider(isMovie: Boolean) {
+    private fun setupSlider() {
         if (isMovie) {
             homeViewModel.getListMovie().observe(this, {
                 when (it.status) {
@@ -94,14 +93,12 @@ class HomeActivity : AppCompatActivity() {
                         showToast("error")
                     }
                     Status.SUCCESS -> {
-                        it.data?.let { data -> setupViewPagerSlider(data, isMovie) }
+                        it.data?.let { data -> setupViewPagerSlider(data) }
                         showLoading(false)
                     }
                 }
-
             })
         } else {
-            Log.e("TAG", "setupTv: tv")
             homeViewModel.getListTV().observe(this, {
                 when (it.status) {
                     Status.LOADING -> {
@@ -110,10 +107,9 @@ class HomeActivity : AppCompatActivity() {
                     Status.ERROR -> {
                         showLoading(false)
                         showToast("error")
-
                     }
                     Status.SUCCESS -> {
-                        it.data?.let { data -> setupViewPagerSlider(data, isMovie) }
+                        it.data?.let { data -> setupViewPagerSlider(data) }
                         showLoading(false)
                     }
                 }
@@ -130,14 +126,14 @@ class HomeActivity : AppCompatActivity() {
         binding.viewPagerSlider.visibility = if (isLoading) View.INVISIBLE else View.VISIBLE
     }
 
-    private fun setupViewPagerSlider(results: List<ContentItemEntity>, isMovie: Boolean) {
+    private fun setupViewPagerSlider(results: List<CatalogEntity>) {
         val adapter = HomeViewPagerSlider(this, results)
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
         adapter.onItemClick(object : ItemClick {
             override fun onItemClick(data: Any?, position: Int) {
-                data as ContentItemEntity
+                data as CatalogEntity
                 val intent = Intent(this@HomeActivity, DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_DETAIL_IS_MOVIE, isMovie)
+                intent.putExtra(DetailActivity.EXTRA_DETAIL_IS_MOVIE, data.isMovie)
                 intent.putExtra(DetailActivity.EXTRA_DETAIL_ID, data.id)
                 startActivity(intent)
             }

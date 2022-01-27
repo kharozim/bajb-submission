@@ -3,21 +3,21 @@ package com.bajp.submissionthree.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bajp.submissionthree.data.source.IRepository
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.data.source.remote.RemoteResource
-import com.bajp.submissionthree.data.source.remote.response.MovieResponse
+import com.bajp.submissionthree.data.source.remote.response.CatalogResponse
 
 class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository {
     override fun getDataMovie(): LiveData<ContentEntity> {
         val response = MutableLiveData<ContentEntity>()
         remoteDataSource.getMovies(object : RemoteResource.CallbackListContent {
-            override fun onAllMovieReceived(data: List<MovieResponse>) {
-                val results = ArrayList<ContentItemEntity>()
+            override fun onAllMovieReceived(data: List<CatalogResponse>) {
+                val results = ArrayList<CatalogEntity>()
                 data.forEach {
                     it.imageSlider = IMAGE_URL + it.imageSlider
                     it.imagePoster = IMAGE_URL + it.imagePoster
                     results.add(
-                        ContentItemEntity(
+                        CatalogEntity(
                             it.id ?: 0,
                             it.name ?: "",
                             it.description ?: "",
@@ -39,12 +39,12 @@ class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository
         val response = MutableLiveData<ContentEntity>()
         remoteDataSource.getDataTv(object : RemoteResource.CallBackListTvShow {
             override fun onAllTvShowReceived(data: List<TvShowResponse>) {
-                val results = ArrayList<ContentItemEntity>()
+                val results = ArrayList<CatalogEntity>()
                 data.forEach {
                     it.imagePoster = IMAGE_URL + it.imagePoster
                     it.imageSlider = IMAGE_URL + it.imageSlider
                     results.add(
-                        ContentItemEntity(
+                        CatalogEntity(
                             it.id ?: 0,
                             it.name ?: "",
                             it.description ?: "",
@@ -62,13 +62,13 @@ class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository
         return response
     }
 
-    override fun getDetailMovie(id: Int): LiveData<ContentItemEntity> {
-        val response = MutableLiveData<ContentItemEntity>()
+    override fun getDetailMovie(id: Int): LiveData<CatalogEntity> {
+        val response = MutableLiveData<CatalogEntity>()
         remoteDataSource.getDetailMovie(id, object : RemoteResource.CallbackDetailContent {
-            override fun onDetailMovieReceived(data: MovieResponse) {
+            override fun onDetailMovieReceived(data: CatalogResponse) {
                 data.imagePoster = IMAGE_URL + data.imagePoster
                 data.imageSlider = IMAGE_URL + data.imageSlider
-                val result = ContentItemEntity(
+                val result = CatalogEntity(
                     data.id ?: 0,
                     data.name ?: "",
                     data.description ?: "",
@@ -84,13 +84,13 @@ class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository
         return response
     }
 
-    override fun getDetailTv(id: Int): LiveData<ContentItemEntity> {
-        val response = MutableLiveData<ContentItemEntity>()
+    override fun getDetailTv(id: Int): LiveData<CatalogEntity> {
+        val response = MutableLiveData<CatalogEntity>()
         remoteDataSource.getDetailTv(id, object : RemoteResource.CallbackDetailContent {
             override fun onDetailTvReceived(data: TvShowResponse) {
                 data.imagePoster = IMAGE_URL + data.imagePoster
                 data.imageSlider = IMAGE_URL + data.imageSlider
-                val result = ContentItemEntity(
+                val result = CatalogEntity(
                     data.id ?: 0,
                     data.name ?: "",
                     data.description ?: "",

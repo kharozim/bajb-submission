@@ -1,6 +1,7 @@
 package com.bajp.submissionthree.di
 
 import android.app.Application
+import com.bajp.submissionthree.data.source.IRepository
 import com.bajp.submissionthree.data.source.Repository
 import com.bajp.submissionthree.data.source.local.LocalDataSource
 import com.bajp.submissionthree.data.source.local.room.LocalDao
@@ -42,12 +43,12 @@ class AppModule {
         fun provideCatalogRepository(
             remoteDataSource: RemoteResource,
             localDataSource: LocalDataSource
-        ): Repository =
+        ): IRepository =
             Repository(remoteDataSource, localDataSource)
 
         @Singleton
         @Provides
-        fun provideViewModelFactory(repo: Repository): ViewModelFactory =
+        fun provideViewModelFactory(repo: IRepository): ViewModelFactory =
             ViewModelFactory(repo)
 
     }

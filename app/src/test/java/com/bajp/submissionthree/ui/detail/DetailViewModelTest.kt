@@ -3,7 +3,7 @@ package com.bajp.submissionthree.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.data.source.IRepository
 import com.bajp.submissionthree.data.source.Repository
 import com.bajp.submissionthree.utils.DataEntityUtil
@@ -31,7 +31,7 @@ class DetailViewModelTest {
     private lateinit var repository: Repository
 
     @Mock
-    private lateinit var observer: Observer<ContentItemEntity>
+    private lateinit var observer: Observer<CatalogEntity>
 
     @Before
     fun setup() {
@@ -44,7 +44,7 @@ class DetailViewModelTest {
         val dummyListMovie = DataEntityUtil.generateDataMovie()
         val dummydetailMovie = dummyListMovie.results[position]
         val movieId = dummyListMovie.results[position].id
-        val detailMovie = MutableLiveData<ContentItemEntity>()
+        val detailMovie = MutableLiveData<CatalogEntity>()
         detailMovie.value = dummydetailMovie
 
         `when`(repository.getDetailMovie(movieId)).thenReturn(detailMovie)
@@ -64,7 +64,7 @@ class DetailViewModelTest {
         val dummyListTvShow = DataEntityUtil.generateDataTV()
         val dummyDetailTvShow = dummyListTvShow.results[position]
         val tvShowId = dummyListTvShow.results[position].id
-        val detailTvShow = MutableLiveData<ContentItemEntity>()
+        val detailTvShow = MutableLiveData<CatalogEntity>()
         detailTvShow.value = dummyDetailTvShow
 
         `when`(repository.getDetailTv(tvShowId)).thenReturn(detailTvShow)

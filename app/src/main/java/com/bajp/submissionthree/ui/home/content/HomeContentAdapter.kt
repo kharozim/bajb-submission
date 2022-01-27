@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ItemsHomeContentBinding
 import com.bajp.submissionthree.ui.home.ItemClick
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bumptech.glide.Glide
 
 class HomeContentAdapter :
-    PagedListAdapter<ContentItemEntity, HomeContentAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<CatalogEntity, HomeContentAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     private var onItemClick: ItemClick? = null
     fun clickItem(listener: ItemClick) {
@@ -36,7 +36,7 @@ class HomeContentAdapter :
 
     inner class MyViewHolder(private val binding: ItemsHomeContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindData(item: ContentItemEntity, position: Int) {
+        fun bindData(item: CatalogEntity, position: Int) {
             binding.run {
                 Glide.with(root.context).load(IMAGE_URL+item.imagePoster).into(ivImage)
                 root.setOnClickListener {
@@ -47,17 +47,17 @@ class HomeContentAdapter :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ContentItemEntity>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CatalogEntity>() {
             override fun areItemsTheSame(
-                oldItem: ContentItemEntity,
-                newItem: ContentItemEntity
+                oldItem: CatalogEntity,
+                newItem: CatalogEntity
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: ContentItemEntity,
-                newItem: ContentItemEntity
+                oldItem: CatalogEntity,
+                newItem: CatalogEntity
             ): Boolean {
                 return oldItem == newItem
             }

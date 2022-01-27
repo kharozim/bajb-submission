@@ -7,9 +7,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "content_item_entities")
+@Entity(tableName = "catalog_entity")
 @Parcelize
-data class ContentItemEntity(
+data class CatalogEntity(
+
+//    @PrimaryKey(autoGenerate = true)
+//    @ColumnInfo(name = "db_id")
+//    var dbId: Int? = null,
+
     @NonNull
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
@@ -32,7 +37,6 @@ data class ContentItemEntity(
 
     @ColumnInfo(name = "rating_count")
     var ratingCount: Int,
-
 
     @ColumnInfo(name = "release_date")
     var releaseDate: String,

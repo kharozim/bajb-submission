@@ -1,12 +1,12 @@
 package com.bajp.submissionthree.utils
 
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 
 object DataEntityUtil {
 
-    fun generateDataMovie(): List<ContentItemEntity> {
+    fun generateDataMovie(): List<CatalogEntity> {
         return listOf(
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/VlHt27nCqOuTnuX6bku8QZapzO.jpg",
                 id = 634649,
                 description = "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
@@ -18,7 +18,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/eENEf62tMXbhyVvdcXlnQz2wcuT.jpg",
                 id = 580489,
                 description = "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
@@ -30,7 +30,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/7ajHGIAYNMiIzejy1LJWdPrcAx8.jpg",
                 id = 512195,
                 description = "An Interpol-issued Red Notice is a global alert to hunt and capture the world's most wanted. But when a daring heist brings together the FBI's top profiler and two rival criminals, there's no telling what will happen.",
@@ -42,7 +42,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/cinER0ESG0eJ49kXlExM0MEWGxW.jpg",
                 id = 566525,
                 description = "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
@@ -53,7 +53,7 @@ object DataEntityUtil {
                 ratingCount = 4296,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/5RuR7GhOI5fElADXZb0X2sr9w5n.jpg",
                 id = 568124,
                 description = "The tale of an extraordinary family, the Madrigals, who live hidden in the mountains of Colombia, in a magical house, in a vibrant town, in a wondrous, charmed place called an Encanto. The magic of the Encanto has blessed every child in the family with a unique gift from super strength to the power to heal—every child except one, Mirabel. But when she discovers that the magic surrounding the Encanto is in danger, Mirabel decides that she, the only ordinary Madrigal, might just be her exceptional family's last hope.",
@@ -64,7 +64,7 @@ object DataEntityUtil {
                 ratingCount = 340,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/1Wlwnhn5sXUIwlxpJgWszT622PS.jpg",
                 id = 585245,
                 description = "As Emily struggles to fit in at home and at school, she discovers a small red puppy who is destined to become her best friend. When Clifford magically undergoes one heck of a growth spurt, becomes a gigantic dog and attracts the attention of a genetics company, Emily and her Uncle Casey have to fight the forces of greed as they go on the run across New York City. Along the way, Clifford affects the lives of everyone around him and teaches Emily and her uncle the true meaning of acceptance and unconditional love.",
@@ -75,7 +75,7 @@ object DataEntityUtil {
                 ratingCount = 595,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/mFbS5TwN95BcSEfiztdchLgTQ0v.jpg",
                 id = 617653,
                 description = "King Charles VI declares that Knight Jean de Carrouges settle his dispute with his squire, Jacques Le Gris, by challenging him to a duel.",
@@ -86,7 +86,7 @@ object DataEntityUtil {
                 ratingCount = 945,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/xGrTm3J0FTafmuQ85vF7ZCw94x6.jpg",
                 id = 589761,
                 description = "The aftermath of a shocking explosion at the Chernobyl nuclear power station made hundreds of people sacrifice their lives to clean up the site of the catastrophe and to successfully prevent an even bigger disaster that could have turned a large part of the European continent into an uninhabitable exclusion zone. This is their story.",
@@ -97,7 +97,7 @@ object DataEntityUtil {
                 ratingCount = 238,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/t27k4502Gzvln1At8iA0DMOd0mt.jpg",
                 id = 482321,
                 description = "In a world where walking, talking, digitally connected bots have become children's best friends, an 11-year-old finds that his robot buddy doesn't quite work the same as the others do.",
@@ -108,7 +108,7 @@ object DataEntityUtil {
                 ratingCount = 367,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/5RMqFZdefnDwY7rdD1oJcTkWPdF.jpg",
                 id = 774741,
                 description = "Greg Heffley is a scrawny but ambitious kid with an active imagination and big plans to be rich and famous – he just has to survive middle school first.",
@@ -119,7 +119,7 @@ object DataEntityUtil {
                 ratingCount = 77,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/lyvszvJJqqI8aqBJ70XzdCNoK0y.jpg",
                 id = 524434,
                 description = "The Eternals are a team of ancient aliens who have been living on Earth in secret for thousands of years. When an unexpected tragedy forces them out of the shadows, they are forced to reunite against mankind’s most ancient enemy, the Deviants.",
@@ -130,7 +130,7 @@ object DataEntityUtil {
                 ratingCount = 1431,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/upOi9aVqPPky7Ba4GsiyFdjc82I.jpg",
                 id = 887767,
                 description = "Soon after a newlywed learns that her husband had her father shot down, she flees from the Callahan ranch in fear. She's rescued by a gunman who safeguards her at a remote outpost as he staves off her husband's attempts to reclaim his bride.",
@@ -141,7 +141,7 @@ object DataEntityUtil {
                 ratingCount = 33,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/r2GAjd4rNOHJh6i6Y0FntmYuPQW.jpg",
                 id = 370172,
                 description = "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
@@ -152,7 +152,7 @@ object DataEntityUtil {
                 ratingCount = 2564,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/tTlAA0REGPXSZPBfWyTW9ipIv1I.jpg",
                 id = 315635,
                 description = "Following the events of Captain America: Civil War, Peter Parker, with the help of his mentor Tony Stark, tries to balance his life as an ordinary high school student in Queens, New York City, with fighting crime as his superhero alter ego Spider-Man as a new threat, the Vulture, emerges.",
@@ -163,7 +163,7 @@ object DataEntityUtil {
                 ratingCount = 17357,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/ng6SSB3JhbcpKTwbPDsRwUYK8Cq.jpg",
                 id = 429617,
                 description = "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
@@ -174,7 +174,7 @@ object DataEntityUtil {
                 ratingCount = 11226,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/sLWUtbrpiLp23a0XDSiUiltdFPJ.jpg",
                 id = 1930,
                 description = "Peter Parker is an outcast high schooler abandoned by his parents as a boy, leaving him to be raised by his Uncle Ben and Aunt May. Like most teenagers, Peter is trying to figure out who he is and how he got to be the person he is today. As Peter discovers a mysterious briefcase that belonged to his father, he begins a quest to understand his parents' disappearance – leading him directly to Oscorp and the lab of Dr. Curt Connors, his father's former partner. As Spider-Man is set on a collision course with Connors' alter ego, The Lizard, Peter will make life-altering choices to use his powers and shape his destiny to become a hero.",
@@ -185,7 +185,7 @@ object DataEntityUtil {
                 ratingCount = 13783,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/7h5WAPAcUzOWpp2jrwHBB48790j.jpg",
                 id = 843241,
                 description = "With the help of the \"Dragon Sin of Wrath\" Meliodas and the worst rebels in history, the Seven Deadly Sins, the \"Holy War\", in which four races, including Humans, Goddesses, Fairies and Giants fought against the Demons, is finally over. At the cost of the \"Lion Sin of Pride\" Escanor's life, the Demon King was defeated and the world regained peace. After that, each of the Sins take their own path.",
@@ -196,7 +196,7 @@ object DataEntityUtil {
                 ratingCount = 245,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/1zgob2Z8xVE3RZUgOKnHKcVPzOE.jpg",
                 id = 877183,
                 description = "The Simpsons host a Disney+ Day party and everyone is on the list… except Homer. With friends from across the service and music fit for a Disney Princess, Plusaversary is Springfield's event of the year.",
@@ -207,7 +207,7 @@ object DataEntityUtil {
                 ratingCount = 167,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg",
                 id = 550988,
                 description = "A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.",
@@ -218,7 +218,7 @@ object DataEntityUtil {
                 ratingCount = 4119,
                 isMovie = true,
                 isFavorite = false
-            ), ContentItemEntity(
+            ), CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/3cMfwbF1J9fglSssim4zKG6scIs.jpg",
                 id = 876262,
                 description = "",
@@ -233,9 +233,9 @@ object DataEntityUtil {
         )
     }
 
-    fun generateDataTV(): List<ContentItemEntity> {
+    fun generateDataTV(): List<CatalogEntity> {
         return listOf(
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
                 releaseDate = "2021-11-24",
                 id = 88329,
@@ -247,7 +247,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/xAKMj134XHQVNHLC6rWsccLMenG.jpg",
                 releaseDate = "2021-10-12",
                 id = 90462,
@@ -259,7 +259,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/1P3QtW1IkivqDrKbbwuR0zCYIf8.jpg",
                 releaseDate = "2021-11-18",
                 id = 71914,
@@ -271,7 +271,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/pkOSjcllDSs4WP9i8DGkw9VgF5Q.jpg",
                 releaseDate = "2015-07-06",
                 id = 63452,
@@ -283,7 +283,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/yfXSvNfF43S0cxpxCEKaU17yZ64.jpg",
                 releaseDate = "1983-09-19",
                 id = 2778,
@@ -295,7 +295,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/wlvnysn2hHctqP5JUPiUE2OsHA.jpg",
                 releaseDate = "2017-12-01",
                 id = 96502,
@@ -308,7 +308,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/vjcuLy14kxgxCaBToAudZWrGQQh.jpg",
                 releaseDate = "2021-01-18",
                 id = 117031,
@@ -321,7 +321,7 @@ object DataEntityUtil {
                 isFavorite = false,
 
                 ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/8lBlBItnehgOAwFt0ezxlXuWeIO.jpg",
                 releaseDate = "2021-11-08",
                 id = 132375,
@@ -333,7 +333,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/2E6HJCzNB0K6wQV6gXGd9VSZiXa.jpg",
                 releaseDate = "2021-12-01",
                 id = 136249,
@@ -345,7 +345,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/eD2U2RwxQosUDwvu19n46KvJEf9.jpg",
                 releaseDate = "2021-09-13",
                 id = 124549,
@@ -357,7 +357,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/75XgXxvZ7bYg6sRIBQKDdBlyTFY.jpg",
                 releaseDate = "2021-08-23",
                 id = 133372,
@@ -369,7 +369,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/h57VktoyPvVJsKx0s4EVewwAqDR.jpg",
                 releaseDate = "2021-12-01",
                 id = 136449,
@@ -381,7 +381,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/3NxyVxfL5zM7k4E36bSJEjFLqCE.jpg",
                 releaseDate = "2021-10-17",
                 id = 136665,
@@ -393,7 +393,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/9PEToOQQIjhvA88dMAAIlEGnFVa.jpg",
                 releaseDate = "2021-12-01",
                 id = 139286,
@@ -405,7 +405,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/4TqrmfFDGaPeItQUEPTJoovlo7Y.jpg",
                 releaseDate = "2021-11-07",
                 id = 139282,
@@ -417,7 +417,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/3NxyVxfL5zM7k4E36bSJEjFLqCE.jpg",
                 releaseDate = "2021-12-01",
                 id = 138890,
@@ -429,7 +429,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
                 releaseDate = "2017-05-02",
                 id = 71446,
@@ -441,7 +441,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/41yaWnIT8AjIHiULHtTbKNzZTjc.jpg",
                 releaseDate = "2014-10-07",
                 id = 60735,
@@ -453,7 +453,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/6W8zEF5jE9ErdhzatZBVI7fkpsP.jpg",
                 releaseDate = "2021-11-28",
                 id = 133723,
@@ -465,7 +465,7 @@ object DataEntityUtil {
                 isMovie = true,
                 isFavorite = false
             ),
-            ContentItemEntity(
+            CatalogEntity(
                 imageSlider = "https://image.tmdb.org/t/p/w500/pCeDvEx7Fg5Lk5ufc6tILx13Lk6.jpg",
                 releaseDate = "2018-10-01",
                 id = 82728,

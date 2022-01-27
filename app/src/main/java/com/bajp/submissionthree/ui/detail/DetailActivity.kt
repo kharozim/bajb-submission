@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bajp.submissionthree.R
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ActivityDetailBinding
 import com.bajp.submissionthree.databinding.ItemDialogDetailBinding
 import com.bajp.submissionthree.utils.ViewModelFactory
@@ -17,16 +16,17 @@ import com.bajp.submissionthree.utils.FormatUtil
 import com.bajp.submissionthree.utils.IMAGE_URL
 import com.bajp.submissionthree.utils.showToast
 import com.bumptech.glide.Glide
+import dagger.android.support.DaggerAppCompatActivity
 import java.util.*
 import javax.inject.Inject
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : DaggerAppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val isMovie by lazy { intent.getBooleanExtra(EXTRA_DETAIL_IS_MOVIE, false) }
     private val detailId by lazy { intent.getIntExtra(EXTRA_DETAIL_ID, 0) }
     private lateinit var viewModel: DetailViewModel
-    private lateinit var contentItem: ContentItemEntity
+    private lateinit var contentItem: CatalogEntity
     @Inject
     lateinit var factory : ViewModelFactory
 
@@ -60,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setView(result: ContentItemEntity) {
+    private fun setView(result: CatalogEntity) {
         contentItem = result
         val dateRelease = FormatUtil.formatDate(result.releaseDate)
         val imageFav = if (result.isFavorite) R.drawable.ic_fav_fill else R.drawable.ic_fav_outline
@@ -114,7 +114,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun doShare(result: ContentItemEntity) {
+    private fun doShare(result: CatalogEntity) {
         val mimeType = "text/plain"
         ShareCompat.IntentBuilder(this)
             .setType(mimeType)

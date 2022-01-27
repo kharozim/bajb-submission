@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 
-@Database(entities = [ContentItemEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CatalogEntity::class, MovieEntitiy::class, TvShowEntity::class], version = 1, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
 
     abstract fun favDao(): LocalDao

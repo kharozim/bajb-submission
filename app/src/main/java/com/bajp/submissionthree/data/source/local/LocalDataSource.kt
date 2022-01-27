@@ -2,38 +2,31 @@ package com.bajp.submissionthree.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import com.bajp.submissionthree.data.source.local.entities.ContentItemEntity
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.data.source.local.room.LocalDao
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val dao: LocalDao) {
 
-    companion object {
-        private var INSTANCE: LocalDataSource? = null
+    fun getMovies(): DataSource.Factory<Int, CatalogEntity> = dao.getMovies()
+    fun getTvs(): DataSource.Factory<Int, CatalogEntity> = dao.getTvs()
+    fun getDetailMovie(id: Int): LiveData<CatalogEntity> = dao.getDetailMovie(id)
+    fun getDetailTv(id: Int): LiveData<CatalogEntity> = dao.getDetailTv(id)
 
-        fun getInstance(favDao: LocalDao): LocalDataSource =
-            INSTANCE ?: LocalDataSource(dao = favDao)
-    }
-
-    fun getMovies(): DataSource.Factory<Int, ContentItemEntity> = dao.getMovies()
-    fun getTvs(): DataSource.Factory<Int, ContentItemEntity> = dao.getTvs()
-    fun getDetailMovie(id: Int): LiveData<ContentItemEntity> = dao.getDetailMovie(id)
-    fun getDetailTv(id: Int): LiveData<ContentItemEntity> = dao.getDetailTv(id)
-
-    fun insertMovies(items: List<ContentItemEntity>) {
+    fun insertMovies(items: List<CatalogEntity>) {
         items.asSequence().map { it.isMovie = true }.toList()
-        dao.insertMovies(items)
+        dao.insertCatalog(items)
     }
 
-    fun insertTvs(items: List<ContentItemEntity>) {
+    fun insertTvs(items: List<CatalogEntity>) {
         items.asSequence().map { it.isMovie = false }.toList()
-        dao.insertMovies(items)
+        dao.insertCatalog(items)
     }
 
-    fun setFav(item: ContentItemEntity) {
+    fun setFav(item: CatalogEntity) {
         item.isFavorite = !item.isFavorite
         dao.setFav(item)
     }
 
-    fun getFavorite() : LiveData<List<ContentItemEntity>> = dao.getFavorite()
+    fun getFavorite() : LiveData<List<CatalogEntity>> = dao.getFavorite()
 }
