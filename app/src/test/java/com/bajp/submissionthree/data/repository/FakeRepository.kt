@@ -1,22 +1,56 @@
 package com.bajp.submissionthree.data.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.bajp.submissionthree.data.source.IRepository
+import com.bajp.submissionthree.data.source.NetworkBoundResource
+import com.bajp.submissionthree.data.source.local.LocalDataSource
 import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.data.source.remote.RemoteResource
 import com.bajp.submissionthree.data.source.remote.response.CatalogResponse
+import com.bajp.submissionthree.data.source.remote.vo.ApiResponse
+import com.bajp.submissionthree.vo.Resource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
+import java.util.concurrent.Executors
+import javax.inject.Inject
 
-class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository {
-    override fun getDataMovie(): LiveData<ContentEntity> {
-        val response = MutableLiveData<ContentEntity>()
-        remoteDataSource.getMovies(object : RemoteResource.CallbackListContent {
-            override fun onAllMovieReceived(data: List<CatalogResponse>) {
-                val results = ArrayList<CatalogEntity>()
+class FakeRepository @Inject constructor(
+    private val remoteDataSource: RemoteResource,
+    private val localDataSource: LocalDataSource,
+) : IRepository {
+
+    private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
+    private val scope = CoroutineScope(dispatcher)
+
+    override fun getDataMovie(): LiveData<Resource<PagedList<CatalogEntity>>> {
+        return object :
+            NetworkBoundResource<PagedList<CatalogEntity>, List<CatalogResponse>>() {
+            override fun loadFromDB(): LiveData<PagedList<CatalogEntity>> {
+                val config = PagedList.Config.Builder().apply {
+                    setEnablePlaceholders(false)
+                    setInitialLoadSizeHint(20)
+                    setPageSize(4)
+                    build()
+                }.build()
+
+                return LivePagedListBuilder(localDataSource.getMovies(), config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<CatalogEntity>?): Boolean {
+                return data.isNullOrEmpty()
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<CatalogResponse>>> {
+                return remoteDataSource.getMovies()
+            }
+
+            override fun saveCallResult(data: List<CatalogResponse>) {
+                val listMovie = ArrayList<CatalogEntity>()
                 data.forEach {
-                    it.imageSlider = IMAGE_URL + it.imageSlider
-                    it.imagePoster = IMAGE_URL + it.imagePoster
-                    results.add(
+                    listMovie.add(
                         CatalogEntity(
                             it.id ?: 0,
                             it.name ?: "",
@@ -25,25 +59,43 @@ class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository
                             it.imageSlider ?: "",
                             it.rating ?: 0.0,
                             it.ratingCount ?: 0,
-                            it.releaseDate ?: ""
+                            it.releaseDate ?: "",
+                            true,
+                            false
                         )
                     )
                 }
-                response.postValue(ContentEntity(results))
+                localDataSource.insertMovies(listMovie)
             }
-        })
-        return response
+
+        }.asLiveData()
     }
 
-    override fun getDataTv(): LiveData<ContentEntity> {
-        val response = MutableLiveData<ContentEntity>()
-        remoteDataSource.getDataTv(object : RemoteResource.CallBackListTvShow {
-            override fun onAllTvShowReceived(data: List<TvShowResponse>) {
-                val results = ArrayList<CatalogEntity>()
+    override fun getDataTv(): LiveData<Resource<PagedList<CatalogEntity>>> {
+        return object :
+            NetworkBoundResource<PagedList<CatalogEntity>, List<CatalogResponse>>() {
+            override fun loadFromDB(): LiveData<PagedList<CatalogEntity>> {
+                val config = PagedList.Config.Builder().apply {
+                    setEnablePlaceholders(false)
+                    setInitialLoadSizeHint(20)
+                    setPageSize(4)
+                    build()
+                }.build()
+                return LivePagedListBuilder(localDataSource.getTvs(), config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<CatalogEntity>?): Boolean {
+                return data.isNullOrEmpty()
+            }
+
+            override fun createCall(): LiveData<ApiResponse<List<CatalogResponse>>> {
+                return remoteDataSource.getDataTv()
+            }
+
+            override fun saveCallResult(data: List<CatalogResponse>) {
+                val listTv = ArrayList<CatalogEntity>()
                 data.forEach {
-                    it.imagePoster = IMAGE_URL + it.imagePoster
-                    it.imageSlider = IMAGE_URL + it.imageSlider
-                    results.add(
+                    listTv.add(
                         CatalogEntity(
                             it.id ?: 0,
                             it.name ?: "",
@@ -52,61 +104,31 @@ class FakeRepository(private val remoteDataSource: RemoteResource) : IRepository
                             it.imageSlider ?: "",
                             it.rating ?: 0.0,
                             it.ratingCount ?: 0,
-                            it.releaseDate ?: ""
+                            it.releaseDate ?: "",
+                            true,
+                            false
                         )
                     )
                 }
-                response.postValue(ContentEntity(results))
+                localDataSource.insertTvs(listTv)
             }
-        })
-        return response
+
+        }.asLiveData()
     }
 
     override fun getDetailMovie(id: Int): LiveData<CatalogEntity> {
-        val response = MutableLiveData<CatalogEntity>()
-        remoteDataSource.getDetailMovie(id, object : RemoteResource.CallbackDetailContent {
-            override fun onDetailMovieReceived(data: CatalogResponse) {
-                data.imagePoster = IMAGE_URL + data.imagePoster
-                data.imageSlider = IMAGE_URL + data.imageSlider
-                val result = CatalogEntity(
-                    data.id ?: 0,
-                    data.name ?: "",
-                    data.description ?: "",
-                    data.imagePoster ?: "",
-                    data.imageSlider ?: "",
-                    data.rating ?: 0.0,
-                    data.ratingCount ?: 0,
-                    data.releaseDate ?: ""
-                )
-                response.postValue(result)
-            }
-        })
-        return response
+        return localDataSource.getDetailMovie(id)
     }
 
     override fun getDetailTv(id: Int): LiveData<CatalogEntity> {
-        val response = MutableLiveData<CatalogEntity>()
-        remoteDataSource.getDetailTv(id, object : RemoteResource.CallbackDetailContent {
-            override fun onDetailTvReceived(data: TvShowResponse) {
-                data.imagePoster = IMAGE_URL + data.imagePoster
-                data.imageSlider = IMAGE_URL + data.imageSlider
-                val result = CatalogEntity(
-                    data.id ?: 0,
-                    data.name ?: "",
-                    data.description ?: "",
-                    data.imagePoster ?: "",
-                    data.imageSlider ?: "",
-                    data.rating ?: 0.0,
-                    data.ratingCount ?: 0,
-                    data.releaseDate ?: ""
-                )
-                response.postValue(result)
-            }
-        })
-        return response
+        return localDataSource.getDetailTv(id)
     }
 
-    companion object {
-        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+    override fun setFavorite(item: CatalogEntity) {
+        scope.launch { localDataSource.setFav(item) }
     }
+
+    override fun getFavorite(): LiveData<List<CatalogEntity>> =
+        localDataSource.getFavorite()
+
 }

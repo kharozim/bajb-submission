@@ -2,6 +2,7 @@ package com.bajp.submissionthree.ui.home
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
@@ -103,5 +104,29 @@ class HomeActivityTest {
         openMovie()
         onView(withId(R.id.viewPagerSlider)).check(matches(isDisplayed()))
         onView(withId(R.id.viewPagerSlider)).perform(swipeLeft())
+    }
+    @Test
+    fun favoriteMovie(){
+        detailMovie()
+        pressBack()
+        onView(withId(R.id.btnFav)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnFav)).perform(click())
+        pressBack()
+        onView(withId(R.id.ivMenuFavorite)).perform(click())
+        onView(withId(R.id.rvFavorite)).check(matches(isDisplayed()))
+        onView(withText("Movie")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun favoriteTvShow(){
+        detailTvShow()
+        pressBack()
+        onView(withId(R.id.btnFav)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnFav)).perform(click())
+        pressBack()
+        onView(withId(R.id.ivMenuFavorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.ivMenuFavorite)).perform(click())
+        onView(withId(R.id.rvFavorite)).check(matches(isDisplayed()))
+        onView(withText("TV Show")).check(matches(isDisplayed()))
     }
 }

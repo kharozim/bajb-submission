@@ -1,7 +1,6 @@
 package com.bajp.submissionthree.di
 
 import android.util.Log
-import com.bajp.submissionthree.data.source.remote.ApiConfig
 import com.bajp.submissionthree.data.source.remote.ApiService
 import com.bajp.submissionthree.utils.BASE_URL_API
 import dagger.Module

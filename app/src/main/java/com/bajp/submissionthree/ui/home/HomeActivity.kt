@@ -83,7 +83,7 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     private fun setupSlider() {
         if (isMovie) {
-            homeViewModel.getListMovie().observe(this, {
+            homeViewModel.getListMovie().observe(this) {
                 when (it.status) {
                     Status.LOADING -> {
                         showLoading(true)
@@ -97,9 +97,9 @@ class HomeActivity : DaggerAppCompatActivity() {
                         showLoading(false)
                     }
                 }
-            })
+            }
         } else {
-            homeViewModel.getListTV().observe(this, {
+            homeViewModel.getListTV().observe(this) {
                 when (it.status) {
                     Status.LOADING -> {
                         showLoading(true)
@@ -113,7 +113,7 @@ class HomeActivity : DaggerAppCompatActivity() {
                         showLoading(false)
                     }
                 }
-            })
+            }
         }
     }
 

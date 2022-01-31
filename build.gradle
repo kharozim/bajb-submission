@@ -37,6 +37,9 @@ ext {
 
     pagingVersion = "2.1.2"
     coroutineVersion = "1.5.2"
+    daggerVersion = '2.29.1'
+    lottieVersion = "4.2.2"
+
 
 }
 

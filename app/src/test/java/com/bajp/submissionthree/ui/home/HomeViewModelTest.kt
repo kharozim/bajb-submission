@@ -3,9 +3,11 @@ package com.bajp.submissionthree.ui.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.bajp.submissionthree.data.source.IRepository
 import com.bajp.submissionthree.data.source.Repository
-import com.bajp.submissionthree.utils.DataEntityUtil
+import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
+import com.bajp.submissionthree.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.TestCase
 import org.junit.Before
@@ -28,7 +30,11 @@ class HomeViewModelTest : TestCase() {
     private lateinit var repository: Repository
 
     @Mock
-    private lateinit var observer: Observer<ContentEntity>
+    private lateinit var observer: Observer<Resource<PagedList<CatalogEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<CatalogEntity>
+
 
     @Before
     fun setup() {
@@ -37,14 +43,18 @@ class HomeViewModelTest : TestCase() {
 
     @Test
     fun getListMovie() {
-        val dummyData = DataEntityUtil.generateDataMovie()
-        val listData = MutableLiveData<ContentEntity>()
-        listData.value = dummyData
-        `when`(repository.getDataMovie()).thenReturn(listData)
-        val listMovie = viewModel.getListMovie().value
+        val dummyData = Resource.success(pagedList)
+        `when`(dummyData.data?.size).thenReturn(5)
+        val movie = MutableLiveData<Resource<PagedList<CatalogEntity>>>()
+        movie.value = dummyData
+
+        `when`(repository.getDataMovie()).thenReturn(movie)
+        val movieEntity = viewModel.getListMovie().value?.data
+
         verify<IRepository>(repository).getDataMovie()
-        assertNotNull(listMovie)
-        assertEquals(listData.value?.results, listMovie?.results)
+
+        assertNotNull(movieEntity)
+        assertEquals(5, movieEntity?.size)
 
         viewModel.getListMovie().observeForever(observer)
         verify(observer).onChanged(dummyData)
@@ -52,16 +62,20 @@ class HomeViewModelTest : TestCase() {
 
     @Test
     fun testGetListTV() {
-        val dummyTv = DataEntityUtil.generateDataTV()
-        val listData = MutableLiveData<ContentEntity>()
-        listData.value = dummyTv
-        `when`(repository.getDataTv()).thenReturn(listData)
-        val listTvShow = viewModel.getListTV()
+        val dummyData = Resource.success(pagedList)
+        `when`(dummyData.data?.size).thenReturn(5)
+        val movie = MutableLiveData<Resource<PagedList<CatalogEntity>>>()
+        movie.value = dummyData
+
+        `when`(repository.getDataTv()).thenReturn(movie)
+        val tvEntity = viewModel.getListTV().value?.data
+
         verify<IRepository>(repository).getDataTv()
-        assertNotNull(listTvShow)
-        assertEquals(listData, listTvShow)
+
+        assertNotNull(tvEntity)
+        assertEquals(5, tvEntity?.size)
 
         viewModel.getListTV().observeForever(observer)
-        verify(observer).onChanged(dummyTv)
+        verify(observer).onChanged(dummyData)
     }
 }

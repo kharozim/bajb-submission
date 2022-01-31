@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.data.source.IRepository
 import com.bajp.submissionthree.data.source.Repository
-import com.bajp.submissionthree.utils.DataEntityUtil
+import com.bajp.submissionthree.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -22,6 +22,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class DetailViewModelTest {
 
     private lateinit var viewModel: DetailViewModel
+
     private val position = 2
 
     @get:Rule
@@ -41,11 +42,11 @@ class DetailViewModelTest {
     @Test
     fun getDetailMovie() {
 
-        val dummyListMovie = DataEntityUtil.generateDataMovie()
-        val dummydetailMovie = dummyListMovie.results[position]
-        val movieId = dummyListMovie.results[position].id
+        val dummyListMovie = DataDummy.generateDataMovie()
+        val dummyDetailMovie = dummyListMovie[position]
+        val movieId = dummyListMovie[position].id
         val detailMovie = MutableLiveData<CatalogEntity>()
-        detailMovie.value = dummydetailMovie
+        detailMovie.value = dummyDetailMovie
 
         `when`(repository.getDetailMovie(movieId)).thenReturn(detailMovie)
         val response = viewModel.getDetailMovie(movieId)
@@ -54,16 +55,16 @@ class DetailViewModelTest {
         assertEquals(detailMovie.value, response.value)
 
         viewModel.getDetailMovie(movieId).observeForever(observer)
-        verify(observer).onChanged(dummydetailMovie)
+        verify(observer).onChanged(dummyDetailMovie)
 
     }
 
     @Test
     fun getDetailTvShow() {
 
-        val dummyListTvShow = DataEntityUtil.generateDataTV()
-        val dummyDetailTvShow = dummyListTvShow.results[position]
-        val tvShowId = dummyListTvShow.results[position].id
+        val dummyListTvShow = DataDummy.generateDataTV()
+        val dummyDetailTvShow = dummyListTvShow[position]
+        val tvShowId = dummyListTvShow[position].id
         val detailTvShow = MutableLiveData<CatalogEntity>()
         detailTvShow.value = dummyDetailTvShow
 

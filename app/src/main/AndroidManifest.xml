@@ -14,7 +14,8 @@
         android:theme="@style/Theme.SubmissionOne">
         <activity
             android:name="com.bajp.submissionthree.ui.favorite.FavoriteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Favorite" />
         <activity
             android:name="com.bajp.submissionthree.ui.detail.DetailActivity"
             android:exported="false"

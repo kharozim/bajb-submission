@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toStartOf="@id/ic_arrow"
         app:layout_constraintStart_toEndOf="@id/ivImage"
         app:layout_constraintTop_toTopOf="@id/ivImage"
-        tools:text="Jumanji and the jungle litle star" />
+        tools:text="Jumanji and the jungle little star" />
 
     <TextView
         android:id="@+id/tvSubtitle"
@@ -43,6 +43,7 @@
         android:id="@+id/ic_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/image_back"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="@id/ivImage"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,5 @@
 package com.bajp.submissionthree.ui.favorite
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +20,7 @@ class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = ArrayList<DataItemType>()
     fun setData(data: List<CatalogEntity>) {
+        items.clear()
         val dataMovie = data.filter { it.isMovie }
         val dataTv = data.filter { !it.isMovie }
         if (dataMovie.isNotEmpty()) {
@@ -110,15 +110,12 @@ class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_HEADER) {
-            Log.d("TAG", "onBindViewHolder content: ${getItemViewType(position)}, $position")
             holder as MyHeader
             val item = items[position] as DataItemType.Header
-            Log.d("TAG", "onBindViewHolder holder: ${holder}")
             holder.bindData(item)
         } else {
             holder as MyViewHolder
             val item = (items[position] as DataItemType.Content)
-//            Log.d("TAG", "onBindViewHolder header: ${item.title}")
             holder.bindData(item, position)
 
         }

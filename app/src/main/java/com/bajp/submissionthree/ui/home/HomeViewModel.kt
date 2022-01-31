@@ -10,22 +10,6 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val repository: IRepository) : ViewModel() {
 
-//    private val _listMovie = MutableLiveData<Resource<PagedList<CatalogEntity>>>()
-//    val listMovie: LiveData<Resource<PagedList<CatalogEntity>>>
-//        get() = _listMovie
-
-//    fun getListMovie() {
-//        val data = repository.getDataMovie()
-//        _listMovie.postValue(data.value)
-//
-//    }
-//
-//    fun getListTV() {
-//        val data = repository.getDataTv()
-//        _listMovie.postValue(data.value)
-//    }
-
-
     fun getListMovie(): LiveData<Resource<PagedList<CatalogEntity>>> {
         return repository.getDataMovie()
     }

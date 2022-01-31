@@ -11,13 +11,12 @@ import com.bajp.submissionthree.R
 import com.bajp.submissionthree.data.source.local.entities.CatalogEntity
 import com.bajp.submissionthree.databinding.ActivityDetailBinding
 import com.bajp.submissionthree.databinding.ItemDialogDetailBinding
-import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.utils.FormatUtil
 import com.bajp.submissionthree.utils.IMAGE_URL
+import com.bajp.submissionthree.utils.ViewModelFactory
 import com.bajp.submissionthree.utils.showToast
 import com.bumptech.glide.Glide
 import dagger.android.support.DaggerAppCompatActivity
-import java.util.*
 import javax.inject.Inject
 
 class DetailActivity : DaggerAppCompatActivity() {
@@ -42,21 +41,21 @@ class DetailActivity : DaggerAppCompatActivity() {
 
     private fun setObserver() {
         if (isMovie) {
-            viewModel.getDetailMovie(detailId).observe(this, { result ->
+            viewModel.getDetailMovie(detailId).observe(this) { result ->
                 if (result != null) {
                     setView(result)
                 } else {
                     showToast(getString(R.string.data_not_found))
                 }
-            })
+            }
         } else {
-            viewModel.getDetailTv(detailId).observe(this, { result ->
+            viewModel.getDetailTv(detailId).observe(this) { result ->
                 if (result != null) {
                     setView(result)
                 } else {
                     showToast(getString(R.string.data_not_found))
                 }
-            })
+            }
         }
     }
 

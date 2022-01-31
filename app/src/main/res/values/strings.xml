@@ -13,4 +13,8 @@
     <string name="image_dialog_detail">image dialog detail</string>
     <string name="share_now">Bagikan aplikasi ini sekarang</string>
     <string name="icon_favorite">Icon Favorite</string>
+    <string name="image_back">Image Back</string>
+    <string name="dont_have_list">You don\'t have list of favorite</string>
+    <string name="no_favorites_yet">No Favorites Yet</string>
+    <string name="search">Search</string>
 </resources>
